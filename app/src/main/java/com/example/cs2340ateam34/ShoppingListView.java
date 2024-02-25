@@ -10,4 +10,5 @@ public class ShoppingListView extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         return inflater.inflate(R.layout.shopping_list_screen, container, false);
     }
+
 }

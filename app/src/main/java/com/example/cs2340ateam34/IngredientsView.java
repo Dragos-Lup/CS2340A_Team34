@@ -11,4 +11,5 @@ public class IngredientsView extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         return inflater.inflate(R.layout.ingredients_screen, container, false);
     }
+
 }

@@ -1,6 +1,5 @@
 package com.example.cs2340ateam34;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

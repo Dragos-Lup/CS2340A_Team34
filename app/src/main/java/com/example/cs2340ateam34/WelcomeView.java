@@ -24,5 +24,4 @@ public class WelcomeView extends AppCompatActivity {
             startActivity(toCreateAccount);
         });
     }
-
 }

@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="155dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Log_In_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log In"
@@ -21,7 +21,7 @@
         tools:layout_editor_absoluteY="214dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Create_Account_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Account"

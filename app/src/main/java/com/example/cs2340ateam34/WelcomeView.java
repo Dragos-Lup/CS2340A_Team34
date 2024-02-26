@@ -1,6 +1,5 @@
 package com.example.cs2340ateam34;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeView extends AppCompatActivity {
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_screen);
         Button toLogInButton = findViewById(R.id.Log_In_Button);
@@ -24,5 +23,4 @@ public class WelcomeView extends AppCompatActivity {
             startActivity(toCreateAccount);
         });
     }
-
 }

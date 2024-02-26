@@ -17,14 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log In"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="214dp" />
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="247dp" />
 
     <Button
         android:id="@+id/Create_Account_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="214dp" />
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="466dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

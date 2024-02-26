@@ -25,6 +25,13 @@ public class CreateAccountView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
+        Button goBackButton = findViewById(R.id.go_back);
+
+        goBackButton.setOnClickListener(v -> {
+            Intent toCreateAccount = new Intent(CreateAccountView.this, WelcomeView.class);
+            startActivity(toCreateAccount);
+        });
+
         username = findViewById(R.id.usernameText);
         password = findViewById(R.id.passwordText);
         Button createAccountButton = findViewById(R.id.createAccountButton);

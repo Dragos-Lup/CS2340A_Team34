@@ -10,5 +10,6 @@
         android:layout_height="wrap_content"
         android:text="Create Account"
         tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="34dp" />
+        tools:layout_editor_absoluteY="34dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

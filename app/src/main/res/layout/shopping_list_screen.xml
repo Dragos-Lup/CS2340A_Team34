@@ -10,5 +10,6 @@
         android:layout_height="wrap_content"
         android:text="Shopping List"
         tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="25dp" />
+        tools:layout_editor_absoluteY="25dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeView extends AppCompatActivity {
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_screen);
         Button toLogInButton = findViewById(R.id.Log_In_Button);

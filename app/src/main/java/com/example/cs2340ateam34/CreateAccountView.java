@@ -1,4 +1,6 @@
 package com.example.cs2340ateam34;
 
-public class CreateAccountView {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CreateAccountView extends AppCompatActivity {
 }

@@ -24,38 +24,39 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         frameLayout = findViewById(R.id.frameLayout);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item){
-                int itemId = item.getItemId();
-                if (itemId == R.id.home){
-                    loadFragment(new HomeView(), false);
-                } else if (itemId == R.id.inputmeal){
-                    loadFragment(new InputMealView(), false);
-                } else if (itemId == R.id.recipe){
-                    loadFragment(new RecipeView(), false);
-                } else if (itemId == R.id.ingredients){
-                    loadFragment(new IngredientsView(), false);
-                } else if (itemId == R.id.shoppinglist){
-                    loadFragment(new ShoppingListView(), false);
-                }
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        int itemId = item.getItemId();
+                        if (itemId == R.id.home) {
+                            loadFragment(new HomeView(), false);
+                        } else if (itemId == R.id.inputmeal) {
+                            loadFragment(new InputMealView(), false);
+                        } else if (itemId == R.id.recipe) {
+                            loadFragment(new RecipeView(), false);
+                        } else if (itemId == R.id.ingredients) {
+                            loadFragment(new IngredientsView(), false);
+                        } else if (itemId == R.id.shoppinglist) {
+                            loadFragment(new ShoppingListView(), false);
+                        }
 
-                loadFragment(new HomeView(), true);
+                        loadFragment(new HomeView(), true);
 
-                return true;
-            }
-        });
+                        return true;
+                    }
+                });
 
 
     }
 
-    private void loadFragment(Fragment fragment, boolean isAppInitialized){
+    private void loadFragment(Fragment fragment, boolean isAppInitialized) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(isAppInitialized){
+        if (isAppInitialized) {
             fragmentTransaction.add(R.id.frameLayout, fragment);
-        } else{
+        } else {
             fragmentTransaction.replace(R.id.frameLayout, fragment);
         }
 

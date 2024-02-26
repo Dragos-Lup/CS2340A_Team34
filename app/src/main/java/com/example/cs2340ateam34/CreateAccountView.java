@@ -47,24 +47,6 @@ public class CreateAccountView extends AppCompatActivity {
                 t.setText("Username and Password cannot contain spaces or be null!");
             }
 
-            //TextView t = findViewById(R.id.createAccountTitle);
-
-            //t.setText(mDatabase.child("users").child(username.getText().toString()).get()[0].getValue(password));
-            /*
-            mDatabase.child("users").child(uname).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.e("firebase", "Error getting data", task.getException());
-                    } else {
-                        //Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        x = String.valueOf(task.getResult().getValue());
-                    }
-                }
-            });
-
-            t.setText(x);
-            */
         });
 
 

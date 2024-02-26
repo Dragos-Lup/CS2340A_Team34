@@ -2,12 +2,17 @@ package com.example.cs2340ateam34;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 
@@ -36,8 +41,7 @@ public class CreateAccountView extends AppCompatActivity {
             if (!uname.isEmpty() && !uname.contains(" ")
                 && !upass.isEmpty() && !upass.contains(" ")) {
                 mDatabase.child("users").child(uname).setValue(upass);
-                Intent toCreateAccount = new Intent(CreateAccountView.this, MainActivity.class);
-                startActivity(toCreateAccount);
+                logincode();
             } else {
                 TextView t = findViewById(R.id.invalidCredentialsText);
                 t.setText("Username and Password cannot contain spaces or be null!");
@@ -63,6 +67,11 @@ public class CreateAccountView extends AppCompatActivity {
             */
         });
 
+
+    }
+    protected void logincode() {
+        Intent toCreateAccount = new Intent(CreateAccountView.this, MainActivity.class);
+        startActivity(toCreateAccount);
 
     }
 }

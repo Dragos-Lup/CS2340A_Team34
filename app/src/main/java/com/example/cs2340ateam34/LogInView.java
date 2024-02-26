@@ -2,12 +2,17 @@ package com.example.cs2340ateam34;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,13 +39,23 @@ public class LogInView extends AppCompatActivity {
 
             //There should be code here that checks the database to see if uname is already in the database
 
-            if (1 == 1) { //IF THE USERNAME AND PASSWORD ARE CORRECT
-                Intent toCreateAccount = new Intent(LogInView.this, MainActivity.class);
-                startActivity(toCreateAccount);
-            } else {
-                TextView t = findViewById(R.id.invalidCredentialsText);
-                t.setText("Username and Password incorrect! Try creating account?");
-            }
+            mDatabase.child("users").child(uname).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    } else {
+                        String x = String.valueOf(task.getResult().getValue());
+                        if (x.equals(upass)) {
+                            logincode();
+                        } else {
+                            TextView t = findViewById(R.id.invalidCredentialsText);
+                            t.setText("Username and Password incorrect! Try creating account?");
+                        }
+
+                    }
+                }
+            });
 
             //TextView t = findViewById(R.id.createAccountTitle);
 
@@ -61,6 +76,11 @@ public class LogInView extends AppCompatActivity {
             t.setText(x);
             */
         });
+    }
+    protected void logincode() {
+        Intent toCreateAccount = new Intent(LogInView.this, MainActivity.class);
+        startActivity(toCreateAccount);
+
     }
 
 }

@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                             loadFragment(new IngredientsView(), false);
                         } else if (itemId == R.id.shoppinglist) {
                             loadFragment(new ShoppingListView(), false);
+                        } else if (itemId == R.id.personalinformation) {
+                            loadFragment(new PersonalInformationView(), false);
                         }
 
                         loadFragment(new HomeView(), true);

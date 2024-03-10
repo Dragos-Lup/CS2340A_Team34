@@ -1,15 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/mealtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meal Input"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="23dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Enter Meal"
+        app:layout_constraintBottom_toTopOf="@+id/calorietext"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:layout_editor_absoluteX="159dp"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="116dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="20dp"
+        android:text="Meal Input"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/mealtext"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        tools:layout_editor_absoluteX="147dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Submit"
+        app:layout_constraintTop_toBottomOf="@+id/calorietext"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="159dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/calorietext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="31dp"
+        android:hint="Enter Calories of Meal"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintTop_toBottomOf="@+id/mealtext"
+        tools:layout_editor_absoluteX="113dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/user_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Info"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="391dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/user_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="431dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/user_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="471dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/user_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="509dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/caloriegoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calorie goal:"
+        android:textSize="16sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="557dp" />
+
+    <TextView
+        android:id="@+id/current_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Day Calorie Intake:"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="609dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

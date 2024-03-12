@@ -101,6 +101,7 @@ public class User {
 
     }
     private static void initMeals(String uname){
+
         Log.d("meals","meals");
         dbRef.child("meals").child(uname).get().addOnCompleteListener(
                 new OnCompleteListener<DataSnapshot>() {
@@ -110,6 +111,7 @@ public class User {
                         Map data = (Map)(task.getResult().getValue());
                         Log.d("meals","mealsadfa");
                         Set<String> keyset = data.keySet();
+                        Meal[] tempmeallist = new Meal[keyset.size()-1];
                         for (String key : keyset) {
                             if(key.equals("initmeal")){
                                 continue;
@@ -121,11 +123,14 @@ public class User {
                             int price = Integer.parseInt(mealMap.get("price").toString());
                             String date = mealMap.get("date").toString();
                             Meal meal = new Meal(name,calories,price,date);
-                            mealList.add(meal);
+                            tempmeallist[Integer.parseInt(key)] = meal;
                             Log.d("madsfnamename", name);
                             Log.d("madsfnamecalories", "" + calories);
                             Log.d("madsfnameprice", "" + price);
                             Log.d("madsfnamedate",  date);
+                        }
+                        for(Meal meal : tempmeallist){
+                            mealList.add(meal);
                         }
                     }
                 });

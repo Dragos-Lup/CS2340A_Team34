@@ -31,10 +31,10 @@
         android:title="ShoppingList"
         android:icon="@drawable/baseline_add_shopping_cart_24"
         android:id="@+id/shoppinglist"/>
-    <item
+    <!--<item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="PersonalInformation"
         android:icon="@drawable/person_icon"
-        android:id="@+id/personalinformation"/>
+        android:id="@+id/personalinformation"/>-->
 </menu>

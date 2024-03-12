@@ -45,6 +45,7 @@ public class CreateAccountView extends AppCompatActivity {
                 TextView t = findViewById(R.id.invalidCredentialsText);
                 t.setText(mDatabase.toString());
                 mDatabase.child("users").child(uname).setValue(upass);
+                setProfile(mDatabase, uname);
                 logincode();
             } else {
                 TextView t = findViewById(R.id.invalidCredentialsText);
@@ -55,9 +56,16 @@ public class CreateAccountView extends AppCompatActivity {
 
 
     }
+
+    private void setProfile(DatabaseReference mDatabase, String uname){
+        mDatabase.child("profile").child(uname).child("height").setValue(180);
+        mDatabase.child("profile").child(uname).child("weight").setValue(140);
+        mDatabase.child("profile").child(uname).child("gender").setValue("male");
+
+    }
     protected void logincode() {
-        Intent toCreateAccount = new Intent(CreateAccountView.this, MainActivity.class);
-        startActivity(toCreateAccount);
+        Intent toMainActivity = new Intent(CreateAccountView.this, MainActivity.class);
+        startActivity(toMainActivity);
 
     }
 }

@@ -16,6 +16,10 @@ public class Meal {
         SimpleDateFormat ft = new SimpleDateFormat("MM-dd-yyyy");
         date = ft.format(new Date());
     }
+    public Meal(String mealName, int calories, int price, String date) {
+        this(mealName,calories,price);
+        this.date = date;
+    }
 
     public String getMealName() {
         return mealName;

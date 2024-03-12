@@ -92,7 +92,7 @@ public class LogInView extends AppCompatActivity {
         toMainActivity.putExtra("uname",uname);
         startActivity(toMainActivity);
         TextView t = findViewById(R.id.invalidCredentialsText);
-        t.setText("ggggrrr");
+        t.setText("Success");
 
     }
 

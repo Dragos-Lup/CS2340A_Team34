@@ -1,6 +1,7 @@
 package com.example.cs2340ateam34;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,21 +47,27 @@ public class InputMealView extends Fragment {
             calgoal -= 166;
         }
         calorieGoalDisplay.setText("Calorie Goal: " + calgoal);
+        currentCaloriesDisplay.setText("Current Day Calorie Intake: " + user.getCurrDayCalorieIntake());
 
-        Button submit = view.findViewById(R.id.submit_button);
-        submit.setOnClickListener(v -> {
-            //Meal inputMeal = new Meal(mealName.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(price.getText().toString()));
-            //user.addMeal(inputMeal);
-//            user.
+        Button submitButton = view.findViewById(R.id.submit_button);
+        submitButton.setOnClickListener(v -> {
+            Log.d("currcal", "in");
+            Meal inputMeal = new Meal(mealName.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(price.getText().toString()));
+            user.addMeal(inputMeal);
+            Log.d("currcal", "addedmeal");
+            double newCalories = user.getCurrDayCalorieIntake();
+            Log.d("currcal", "" + newCalories);
+            currentCaloriesDisplay.setText("Current Day Calorie Intake: " + newCalories);
+
         });
 
         Button priceVisual = view.findViewById(R.id.price_visual);
-        submit.setOnClickListener(v -> {
+        priceVisual.setOnClickListener(v -> {
 
         });
 
         Button calorieVisual = view.findViewById(R.id.cal_visual);
-        submit.setOnClickListener(v -> {
+        calorieVisual.setOnClickListener(v -> {
 
 
         });

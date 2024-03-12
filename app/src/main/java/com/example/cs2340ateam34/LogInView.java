@@ -81,8 +81,6 @@ public class LogInView extends AppCompatActivity {
                     }
                 }
             });
-
-            t.setText(x);
             */
         });
     }

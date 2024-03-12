@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -19,6 +21,7 @@ public class InputMealView extends Fragment {
     private EditText calories;
 
     private EditText price;
+
 
     private DatabaseReference meals;
     @Override
@@ -50,6 +53,9 @@ public class InputMealView extends Fragment {
         currentCaloriesDisplay.setText("Current Day Calorie Intake: " + user.getCurrDayCalorieIntake());
 
         Button submitButton = view.findViewById(R.id.submit_button);
+        Button priceVisual = view.findViewById(R.id.price_visual);
+        Button calorieVisual = view.findViewById(R.id.cal_visual);
+
         submitButton.setOnClickListener(v -> {
             Log.d("currcal", "in");
             Meal inputMeal = new Meal(mealName.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(price.getText().toString()));
@@ -61,12 +67,16 @@ public class InputMealView extends Fragment {
 
         });
 
-        Button priceVisual = view.findViewById(R.id.price_visual);
         priceVisual.setOnClickListener(v -> {
-
+            PersonalInformationView profileFragment = new PersonalInformationView();
+            FragmentManager fragmentManager = getChildFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.profileframe, profileFragment).commit();
+            priceVisual.setVisibility(View.INVISIBLE);
+            calorieVisual.setVisibility(View.INVISIBLE);
         });
 
-        Button calorieVisual = view.findViewById(R.id.cal_visual);
+
         calorieVisual.setOnClickListener(v -> {
 
 

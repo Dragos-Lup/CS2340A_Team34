@@ -41,9 +41,11 @@ public class LogInView extends AppCompatActivity {
             String uname = username.getText().toString();
             String upass = password.getText().toString();
 
-            //There should be code here that checks the database to see if uname is already in the database
+            //There should be code here that checks the database to see if uname
+            //is already in the database
 
-            mDatabase.child("users").child(uname).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            mDatabase.child("users").child(uname).get().addOnCompleteListener(
+                    new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
 

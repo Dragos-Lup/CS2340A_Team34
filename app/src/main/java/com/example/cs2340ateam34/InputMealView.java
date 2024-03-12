@@ -82,8 +82,8 @@ public class InputMealView extends Fragment {
 
         });
         return view;
-    }
 
+    }
 
 
 }

@@ -23,4 +23,6 @@ public class InputMealView extends Fragment {
         return inflater.inflate(R.layout.input_meal, container, false);
     }
 
+
+
 }

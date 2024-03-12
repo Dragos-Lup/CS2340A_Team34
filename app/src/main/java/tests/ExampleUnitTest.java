@@ -1,4 +1,4 @@
-package com.example.cs2340ateam34;
+package tests;
 
 import org.junit.Test;
 
@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void database() {
-        assertEquals(1+1,2);
+    public void database() {assertEquals(1+1,2);
     }
 }

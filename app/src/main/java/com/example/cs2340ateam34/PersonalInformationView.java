@@ -34,12 +34,19 @@ public class PersonalInformationView extends Fragment {
             String newheight = heightInput.getText().toString();
             String newweight = weightInput.getText().toString();
             String newgender = genderInput.getText().toString();
-            heightDisplay.setText("Height: " + newheight);
-            weightDisplay.setText("Weight: " + newweight);
-            genderDisplay.setText("Gender: " + newgender);
-            user.setProfHeight(Integer.parseInt(newheight));
-            user.setProfWeight(Integer.parseInt(newweight));
-            user.setProfGender(newgender);
+            if(!newheight.equals("")) {
+                heightDisplay.setText("Height: " + newheight);
+                user.setProfHeight(Integer.parseInt(newheight));
+            }
+            if(!newweight.equals("")) {
+                weightDisplay.setText("Weight: " + newweight);
+                user.setProfWeight(Integer.parseInt(newweight));
+            }
+            if(!newgender.equals("")) {
+                genderDisplay.setText("Gender: " + newgender);
+                user.setProfGender(newgender);
+            }
+
         });
 
         return view;

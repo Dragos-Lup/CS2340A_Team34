@@ -1,17 +1,20 @@
 package com.example.cs2340ateam34;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Meal {
     private String mealName;
     private int calories;
     private int price;
-    private Date date;
+    private String date;
 
     public Meal(String mealName, int calories, int price) {
         this.mealName = mealName;
         this.calories = calories;
         this.price = price;
+        SimpleDateFormat ft = new SimpleDateFormat("MM-dd-yyyy");
+        date = ft.format(new Date());
     }
 
     public String getMealName() {
@@ -38,11 +41,11 @@ public class Meal {
         this.price = price;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

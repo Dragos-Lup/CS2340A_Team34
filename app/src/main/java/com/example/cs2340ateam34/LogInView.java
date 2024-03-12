@@ -56,7 +56,7 @@ public class LogInView extends AppCompatActivity {
                         String x = String.valueOf(task.getResult().getValue());
 
                         if (x.equals(upass)) {
-                            logincode();
+                            logincode(uname);
                         } else {
                             TextView t = findViewById(R.id.invalidCredentialsText);
                             t.setText("Username and Password incorrect! Try creating account?");
@@ -86,11 +86,14 @@ public class LogInView extends AppCompatActivity {
             */
         });
     }
-    protected void logincode() {
-        Intent toCreateAccount = new Intent(LogInView.this, MainActivity.class);
-        startActivity(toCreateAccount);
+    protected void logincode(String uname) {
+        Log.d("logincode","made it to login");
+        Intent toMainActivity = new Intent(LogInView.this, MainActivity.class);
+        toMainActivity.putExtra("uname",uname);
+        startActivity(toMainActivity);
         TextView t = findViewById(R.id.invalidCredentialsText);
         t.setText("ggggrrr");
+
     }
 
 }

@@ -2,19 +2,14 @@ package com.example.cs2340ateam34;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccountView extends AppCompatActivity {
     private EditText username;
@@ -47,7 +42,10 @@ public class CreateAccountView extends AppCompatActivity {
 
             if (!uname.isEmpty() && !uname.contains(" ")
                 && !upass.isEmpty() && !upass.contains(" ")) {
+                TextView t = findViewById(R.id.invalidCredentialsText);
+                t.setText(mDatabase.toString());
                 mDatabase.child("users").child(uname).setValue(upass);
+                setProfile(mDatabase, uname);
                 logincode();
             } else {
                 TextView t = findViewById(R.id.invalidCredentialsText);
@@ -58,9 +56,16 @@ public class CreateAccountView extends AppCompatActivity {
 
 
     }
+
+    private void setProfile(DatabaseReference mDatabase, String uname){
+        mDatabase.child("profile").child(uname).child("height").setValue(180);
+        mDatabase.child("profile").child(uname).child("weight").setValue(140);
+        mDatabase.child("profile").child(uname).child("gender").setValue("male");
+
+    }
     protected void logincode() {
-        Intent toCreateAccount = new Intent(CreateAccountView.this, MainActivity.class);
-        startActivity(toCreateAccount);
+        Intent toMainActivity = new Intent(CreateAccountView.this, MainActivity.class);
+        startActivity(toMainActivity);
 
     }
 }

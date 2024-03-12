@@ -1,4 +1,4 @@
-package com.example.cs2340ateam34;
+package com.example.View;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.cs2340ateam34;
+package com.example.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

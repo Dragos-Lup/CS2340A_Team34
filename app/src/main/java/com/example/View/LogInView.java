@@ -1,4 +1,4 @@
-package com.example.cs2340ateam34;
+package com.example.View;
 
 import android.content.Intent;
 import android.os.Bundle;

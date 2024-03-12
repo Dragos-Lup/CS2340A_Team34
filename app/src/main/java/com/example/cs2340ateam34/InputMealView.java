@@ -35,9 +35,17 @@ public class InputMealView extends Fragment {
         TextView heightDisplay = view.findViewById(R.id.user_height);
         TextView weightDisplay = view.findViewById(R.id.user_weight);
         TextView genderDisplay = view.findViewById(R.id.user_gender);
+        TextView calorieGoalDisplay = view.findViewById(R.id.caloriegoal);
+        TextView currentCaloriesDisplay = view.findViewById(R.id.current_calories);
         heightDisplay.setText("Height: " + user.getProfHeight());
         weightDisplay.setText("Weight: " + user.getProfWeight());
         genderDisplay.setText("Gender: " + user.getProfGender());
+
+        double calgoal = 10 * user.getProfWeight() + 6.25 * user.getProfHeight() - 100 + 5;
+        if (user.getProfGender().equals("female")){
+            calgoal -= 166;
+        }
+        calorieGoalDisplay.setText("Calorie Goal: " + calgoal);
 
         Button submit = view.findViewById(R.id.submit_button);
         submit.setOnClickListener(v -> {

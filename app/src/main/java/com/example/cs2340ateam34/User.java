@@ -173,6 +173,7 @@ public class User {
         profile.setWeight(inputWeight);
         dbRef.child("profile").child(uname).child("weight").setValue(inputWeight);
     }
+
     public double getCurrDayCalorieIntake(){
         // Get current date
         Date currentDate = new Date();
@@ -190,5 +191,8 @@ public class User {
             }
         }
         return out;
+    }
+    public ArrayList<Meal> getMealList() {
+        return mealList;
     }
 }

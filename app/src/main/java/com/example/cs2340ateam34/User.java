@@ -19,12 +19,12 @@ public class User {
 
     private static String uname;
 
-    private volatile static int height = -1;
-    private volatile static int weight = -1;
-    private volatile static String gender = "Undefined";
+//    private volatile static int height = -1;
+//    private volatile static int weight = -1;
+//    private volatile static String gender = "Undefined";
     private ArrayList<Meal> mealList;
 
-    private Profile profile;
+    private volatile Profile profile;
 
     public int calorieGoal; // made from formula
 
@@ -37,7 +37,7 @@ public class User {
                     //add code to fetch meal list and profile from relevant user account in database
                     instance = new User();
                     instance.mealList = new ArrayList<>();
-                    instance.profile= new Profile();
+                    instance.profile = new Profile(-1, -1, "Undefined");
                 }
             }
         }
@@ -56,7 +56,7 @@ public class User {
 
                     instance = new User();
                     instance.mealList = new ArrayList<>();
-                    instance.profile= new Profile();
+                    instance.profile= new Profile(-1, -1, "Undefined");
                 }
             }
         }
@@ -72,7 +72,7 @@ public class User {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         String x = String.valueOf(task.getResult().getValue());
                         Log.d("GENDER", x);
-                        gender = x;
+                        instance.profile.setGender(x);
                     }
                 });
         dbRef.child("profile").child(uname).child("height").get().addOnCompleteListener(
@@ -81,7 +81,7 @@ public class User {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         String x = String.valueOf(task.getResult().getValue());
                         Log.d("Height", x);
-                        height = Integer.parseInt(x);
+                        instance.profile.setHeight(Integer.parseInt(x));
                     }
                 });
         dbRef.child("profile").child(uname).child("weight").get().addOnCompleteListener(
@@ -90,37 +90,37 @@ public class User {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         String x = String.valueOf(task.getResult().getValue());
                         Log.d("Weight", x);
-                        weight = Integer.parseInt(x);
+                        instance.profile.setWeight(Integer.parseInt(x));
                     }
                 });
 
     }
     public void addMeal(Meal meal) {
-
+        mealList.add(meal);
     }
 
     public String getUname(){
         return uname;
     }
     public String getProfGender(){
-        return gender;
+        return profile.getGender();
     }
     public void setProfGender(String inputGender){
-        gender = inputGender;
+        profile.setGender(inputGender);
         dbRef.child("profile").child(uname).child("gender").setValue(inputGender);
     }
     public int getProfHeight(){
-        return height;
+        return profile.getHeight();
     }
     public void setProfHeight(int inputHeight){
-        height = inputHeight;
+        profile.setHeight(inputHeight);
         dbRef.child("profile").child(uname).child("height").setValue(inputHeight);
     }
     public int getProfWeight(){
-        return weight;
+        return profile.getWeight();
     }
     public void setProfWeight(int inputWeight){
-        weight = inputWeight;
+        profile.setWeight(inputWeight);
         dbRef.child("profile").child(uname).child("weight").setValue(inputWeight);
     }
 }

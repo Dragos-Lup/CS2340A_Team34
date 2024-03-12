@@ -1,4 +1,4 @@
-package com.example.ViewModel;
+package com.example.cs2340ateam34;
 
 public class AccountViewModel {
 

@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example.cs2340ateam34;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.example.View;
+package com.example.cs2340ateam34;
 
 import androidx.fragment.app.Fragment;
 

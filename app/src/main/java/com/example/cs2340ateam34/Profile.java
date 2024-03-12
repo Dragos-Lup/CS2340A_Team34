@@ -1,47 +1,41 @@
 package com.example.cs2340ateam34;
 
 public class Profile {
-    private String name;
 
-    private double weight;
+    private int weight;
 
-    private double height;
+    private int height;
 
-    private int age;
+    private String gender;
 
-    public Profile() {
+    public Profile(int height, int weight, String gender) {
+        this.height = height;
+        this.weight = weight;
+        this.gender = gender;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public int getAge() {
-        return age;
+    public String getGender() {
+        return gender;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

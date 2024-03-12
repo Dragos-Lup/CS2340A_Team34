@@ -123,4 +123,8 @@ public class User {
         profile.setWeight(inputWeight);
         dbRef.child("profile").child(uname).child("weight").setValue(inputWeight);
     }
+
+    public ArrayList<Meal> getMealList() {
+        return mealList;
+    }
 }

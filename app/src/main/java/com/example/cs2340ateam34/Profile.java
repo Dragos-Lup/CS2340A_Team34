@@ -1,12 +1,14 @@
 package com.example.cs2340ateam34;
 
+import android.util.Log;
+
 public class Profile {
 
-    private int weight;
+    private volatile int weight = -1;
 
-    private int height;
+    private volatile int height = -1;
 
-    private String gender;
+    private volatile String gender = "Undef";
 
     public Profile(int height, int weight, String gender) {
         this.height = height;
@@ -32,6 +34,7 @@ public class Profile {
     }
 
     public String getGender() {
+        Log.d("gender", gender);
         return gender;
     }
 

@@ -9,129 +9,157 @@
         android:id="@+id/mealtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="159dp"
         android:layout_marginBottom="5dp"
         android:hint="Enter Meal"
         app:layout_constraintBottom_toTopOf="@+id/calorietext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="159dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="116dp"
         android:layout_height="35dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="148dp"
         android:layout_marginBottom="20dp"
         android:text="Meal Input"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/mealtext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        tools:layout_editor_absoluteX="147dp"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
         android:layout_marginTop="68dp"
+        android:layout_marginEnd="159dp"
         android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calorietext"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="159dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/calorietext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="114dp"
         android:layout_marginBottom="31dp"
         android:hint="Enter Calories of Meal"
         app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mealtext"
-        tools:layout_editor_absoluteX="113dp"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/pricetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="13dp"
         android:hint="Price:"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="264dp"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calorietext"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/user_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="350dp"
         android:text="User Info"
         android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="393dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/user_height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="19dp"
         android:text="Height"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="434dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_info"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/user_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         android:text="Gender"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="505dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_weight"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/user_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="17dp"
         android:text="Weight"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="470dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_height"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/current_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
         android:text="Current Day Calorie Intake:"
         android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="590dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caloriegoal"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/caloriegoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="19dp"
         android:text="Calorie goal:"
         android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="544dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_gender"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/price_visual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="36dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="35dp"
         android:text="Price Visual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cal_visual"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_calories" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cal_visual"

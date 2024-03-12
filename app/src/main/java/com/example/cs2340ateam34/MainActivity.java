@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Main", uname);
         User user = User.getInstance(uname);
         Log.d("MAINGENDER", user.getProfGender());
+        Log.d("MAINHEIGHT", "" +user.getProfHeight());
         loadFragment(new HomeView(), false, user);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         frameLayout = findViewById(R.id.frameLayout);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/mealtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,13 +35,13 @@
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="68dp"
         android:text="Submit"
         app:layout_constraintTop_toBottomOf="@+id/calorietext"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="159dp" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/calorietext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +53,15 @@
         tools:layout_editor_absoluteX="113dp"
         tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/pricetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Price:"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="264dp"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/user_info"
         android:layout_width="wrap_content"
@@ -61,7 +70,7 @@
         android:textSize="16sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="371dp" />
+        tools:layout_editor_absoluteY="393dp" />
 
     <TextView
         android:id="@+id/user_height"
@@ -70,7 +79,7 @@
         android:text="Height"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="412dp" />
+        tools:layout_editor_absoluteY="434dp" />
 
     <TextView
         android:id="@+id/user_gender"
@@ -79,7 +88,7 @@
         android:text="Gender"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="490dp" />
+        tools:layout_editor_absoluteY="505dp" />
 
     <TextView
         android:id="@+id/user_weight"
@@ -87,8 +96,8 @@
         android:layout_height="wrap_content"
         android:text="Weight"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="452dp" />
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="470dp" />
 
     <TextView
         android:id="@+id/current_calories"
@@ -108,7 +117,7 @@
         android:textSize="16sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="538dp" />
+        tools:layout_editor_absoluteY="544dp" />
 
     <Button
         android:id="@+id/price_visual"
@@ -136,6 +145,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/price_visual"
-        app:layout_constraintTop_toBottomOf="@+id/submit_button" />
+        app:layout_constraintTop_toBottomOf="@+id/submit_button"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

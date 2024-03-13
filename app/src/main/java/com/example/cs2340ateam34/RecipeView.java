@@ -12,4 +12,6 @@ public class RecipeView extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.recipe_screen, container, false);
     }
+
+    //create the recipeview class
 }

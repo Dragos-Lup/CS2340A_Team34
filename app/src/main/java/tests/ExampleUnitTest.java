@@ -4,7 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.anychart.charts.Cartesian;
+import com.example.cs2340ateam34.ChartHandler;
 import com.example.cs2340ateam34.Meal;
+import com.example.cs2340ateam34.Profile;
+import com.example.cs2340ateam34.User;
+
+import java.util.ArrayList;
 
 /**
  * Tests
@@ -57,7 +63,49 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void mealTesting4() {
-        
+    public void userTesting1() {
+        User a = User.getInstance();
+        assertNull(a.getUname());
+        assertEquals(new ArrayList<>(), a.getMealList());
     }
+
+    @Test
+    public void userTesting2() {
+        User a = User.getInstance("a");
+        assertEquals("a", a.getUname());
+        Meal meal = new Meal("Cookies", 230430, 5, "Last Week");
+        a.addMeal(meal);
+        assertEquals(meal, a.getMealList().get(a.getMealList().size()-1));
+    }
+
+    @Test
+    public void profileTesting1() {
+        Profile prof = new Profile(2, 2000, "male");
+        assertEquals(2, prof.getHeight());
+        assertEquals(2000, prof.getWeight());
+        assertEquals("male", prof.getGender());
+    }
+
+    @Test
+    public void profileTesting2() {
+        Profile prof = new Profile(2, 2000, "male");
+        prof.setGender("female");
+        prof.setHeight(30);
+        prof.setWeight(1);
+        assertEquals(30, prof.getHeight());
+        assertEquals(1, prof.getWeight());
+        assertEquals("female", prof.getGender());
+    }
+
+    @Test
+    public void profileTesting3() {
+        Profile prof = new Profile(2, 2000, "male");
+        prof.setGender("female");
+        assertEquals("female", prof.getGender());
+        prof.setGender("other");
+        assertEquals("other", prof.getGender());
+        prof.setGender("else");
+        assertEquals("else", prof.getGender());
+    }
+
 }

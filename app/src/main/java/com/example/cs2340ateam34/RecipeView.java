@@ -13,5 +13,5 @@ public class RecipeView extends Fragment {
         return inflater.inflate(R.layout.recipe_screen, container, false);
     }
 
-    //create the recipeview class
+    // create the recipeview class
 }

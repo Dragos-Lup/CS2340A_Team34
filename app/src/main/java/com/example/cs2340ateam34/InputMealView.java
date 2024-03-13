@@ -1,5 +1,6 @@
 package com.example.cs2340ateam34;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DatabaseReference;
 
+import org.w3c.dom.Text;
+
 public class InputMealView extends Fragment {
     private EditText mealName;
 
@@ -22,7 +25,8 @@ public class InputMealView extends Fragment {
 
     private EditText price;
 
-
+    private TextView title;
+    Button submitButton;
     private DatabaseReference meals;
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -33,7 +37,7 @@ public class InputMealView extends Fragment {
         calories = view.findViewById(R.id.calorietext);
         price = view.findViewById(R.id.pricetext);
 
-
+        title = view.findViewById(R.id.textView3);
 
         User user = User.getInstance();
         TextView heightDisplay = view.findViewById(R.id.user_height);
@@ -52,7 +56,7 @@ public class InputMealView extends Fragment {
         calorieGoalDisplay.setText("Calorie Goal: " + calgoal);
         currentCaloriesDisplay.setText("Current Day Calorie Intake: " + user.getCurrDayCalorieIntake());
 
-        Button submitButton = view.findViewById(R.id.submit_button);
+        submitButton = view.findViewById(R.id.submit_button);
         Button priceVisual = view.findViewById(R.id.price_visual);
         Button calorieVisual = view.findViewById(R.id.cal_visual);
 
@@ -68,22 +72,37 @@ public class InputMealView extends Fragment {
         });
 
         priceVisual.setOnClickListener(v -> {
-            PersonalInformationView profileFragment = new PersonalInformationView();
-            FragmentManager fragmentManager = getChildFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.profileframe, profileFragment).commit();
-            priceVisual.setVisibility(View.INVISIBLE);
-            calorieVisual.setVisibility(View.INVISIBLE);
+
         });
 
 
         calorieVisual.setOnClickListener(v -> {
-
-
+//            loadFragment(new CalorieGraphView());
+            Intent toCalGraph = new Intent(getActivity(), CalGraphTest.class);
+            startActivity(toCalGraph);
         });
         return view;
 
     }
+    private void loadFragment(Fragment fragment) {
+        submitButton.setVisibility(View.INVISIBLE);
+        mealName.setVisibility(View.INVISIBLE);
+        calories.setVisibility(View.INVISIBLE);
+        price.setVisibility(View.INVISIBLE);
+        title.setVisibility(View.INVISIBLE);
 
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Remove any existing fragment
+        Fragment existingFragment = fragmentManager.findFragmentById(R.id.frameLayout);
+        if (existingFragment != null) {
+            fragmentTransaction.remove(existingFragment);
+            fragmentManager.executePendingTransactions();
+        }
+            fragmentTransaction.add(R.id.frameLayout, fragment);
+
+        fragmentTransaction.commit();
+    }
 
 }

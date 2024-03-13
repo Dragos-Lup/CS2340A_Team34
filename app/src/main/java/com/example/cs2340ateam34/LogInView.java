@@ -44,50 +44,33 @@ public class LogInView extends AppCompatActivity {
             //There should be code here that checks the database to see if uname
             //is already in the database
 
-            mDatabase.child("users").child(uname).get().addOnCompleteListener(
-                    new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
+            mDatabase.child("users").child(uname).get()
+                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
 
-                    if (!task.isSuccessful()) {
-                        t.setText("Username and Password incorrect! Try creating account?");
-                        Log.e("firebase", "Error getting data", task.getException());
-                    } else {
-                        String x = String.valueOf(task.getResult().getValue());
-
-                        if (x.equals(upass)) {
-                            logincode(uname);
-                        } else {
-                            TextView t = findViewById(R.id.invalidCredentialsText);
+                        if (!task.isSuccessful()) {
                             t.setText("Username and Password incorrect! Try creating account?");
+                            Log.e("firebase", "Error getting data", task.getException());
+                        } else {
+                            String x = String.valueOf(task.getResult().getValue());
+
+                            if (x.equals(upass)) {
+                                logincode(uname);
+                            } else {
+                                TextView t = findViewById(R.id.invalidCredentialsText);
+                                t.setText("Username and Password incorrect! Try creating account?");
+                            }
+
                         }
-
                     }
-                }
-            });
-
-            //TextView t = findViewById(R.id.createAccountTitle);
-
-            //t.setText(mDatabase.child("users").child(username.getText().toString()).get()[0].getValue(password));
-            /*
-            mDatabase.child("users").child(uname).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.e("firebase", "Error getting data", task.getException());
-                    } else {
-                        //Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        x = String.valueOf(task.getResult().getValue());
-                    }
-                }
-            });
-            */
+                });
         });
     }
     protected void logincode(String uname) {
-        Log.d("logincode","made it to login");
+        Log.d("logincode", "made it to login");
         Intent toMainActivity = new Intent(LogInView.this, MainActivity.class);
-        toMainActivity.putExtra("uname",uname);
+        toMainActivity.putExtra("uname", uname);
         startActivity(toMainActivity);
         TextView t = findViewById(R.id.invalidCredentialsText);
         t.setText("Success");

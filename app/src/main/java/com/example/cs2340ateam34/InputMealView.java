@@ -23,7 +23,7 @@ public class InputMealView extends Fragment {
     private EditText price;
 
     private TextView title;
-    Button submitButton;
+    private Button submitButton;
     private DatabaseReference meals;
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -47,11 +47,12 @@ public class InputMealView extends Fragment {
         genderDisplay.setText("Gender: " + user.getProfGender());
 
         double calgoal = 10 * user.getProfWeight() + 6.25 * user.getProfHeight() - 100 + 5;
-        if (user.getProfGender().equals("female")){
+        if (user.getProfGender().equals("female")) {
             calgoal -= 166;
         }
         calorieGoalDisplay.setText("Calorie Goal: " + calgoal);
-        currentCaloriesDisplay.setText("Current Day Calorie Intake: " + user.getCurrDayCalorieIntake());
+        currentCaloriesDisplay.setText("Current Day Calorie Intake: "
+                + user.getCurrDayCalorieIntake());
 
         submitButton = view.findViewById(R.id.submit_button);
         Button priceVisual = view.findViewById(R.id.price_visual);
@@ -59,7 +60,9 @@ public class InputMealView extends Fragment {
 
         submitButton.setOnClickListener(v -> {
             Log.d("currcal", "in");
-            Meal inputMeal = new Meal(mealName.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(price.getText().toString()));
+            Meal inputMeal = new Meal(mealName.getText().toString(),
+                    Integer.parseInt(calories.getText().toString()),
+                    Integer.parseInt(price.getText().toString()));
             user.addMeal(inputMeal);
             Log.d("currcal", "addedmeal");
             double newCalories = user.getCurrDayCalorieIntake();
@@ -97,7 +100,7 @@ public class InputMealView extends Fragment {
             fragmentTransaction.remove(existingFragment);
             fragmentManager.executePendingTransactions();
         }
-            fragmentTransaction.add(R.id.frameLayout, fragment);
+        fragmentTransaction.add(R.id.frameLayout, fragment);
 
         fragmentTransaction.commit();
     }

@@ -37,7 +37,8 @@ public class CreateAccountView extends AppCompatActivity {
             String uname = username.getText().toString();
             String upass = password.getText().toString();
 
-            //There should be code here that checks the database to see if uname is already in the database
+            //There should be code here that checks the database to see
+            //if uname is already in the database
 
 
             if (!uname.isEmpty() && !uname.contains(" ")
@@ -58,13 +59,13 @@ public class CreateAccountView extends AppCompatActivity {
 
     }
 
-    private void setProfile(DatabaseReference mDatabase, String uname){
+    private void setProfile(DatabaseReference mDatabase, String uname) {
         mDatabase.child("profile").child(uname).child("height").setValue(170);
         mDatabase.child("profile").child(uname).child("weight").setValue(60);
         mDatabase.child("profile").child(uname).child("gender").setValue("male");
 
     }
-    private void setMeals(DatabaseReference mDatabase, String uname){
+    private void setMeals(DatabaseReference mDatabase, String uname) {
         mDatabase.child("meals").child(uname).child("initmeal").child("name").setValue("initmeal");
         mDatabase.child("meals").child(uname).child("initmeal").child("price").setValue(0);
         mDatabase.child("meals").child(uname).child("initmeal").child("cals").setValue(0);

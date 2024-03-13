@@ -16,15 +16,17 @@ import java.util.List;
 
 public class ChartHandler {
 
-    public static Cartesian makeGraph(boolean calorieOrPrice) { // False for calories, true for price
+    public static Cartesian makeGraph(boolean calorieOrPrice) {
+        // False for calories, true for price
         User user = User.getInstance();
         Cartesian cartesian = AnyChart.column();
         List<DataEntry> data = new ArrayList<>();
         ArrayList<Meal> meals = user.getMealList();
         int mealsIndex = meals.size() - 1;
-        while(data.size() < 7 && mealsIndex >= 0) {
+        while (data.size() < 7 && mealsIndex >= 0) {
             Meal meal = meals.get(mealsIndex--);
-            data.add(new ValueDataEntry(meal.getMealName(), calorieOrPrice ? meal.getPrice() : meal.getCalories()));
+            data.add(new ValueDataEntry(meal.getMealName(), calorieOrPrice
+                    ? meal.getPrice() : meal.getCalories()));
         }
 
         Column column = cartesian.column(data);
@@ -48,7 +50,7 @@ public class ChartHandler {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.xAxis(0).title("Meal");
-        cartesian.yAxis(0).title(calorieOrPrice? "Price" : "Calories");
+        cartesian.yAxis(0).title(calorieOrPrice ? "Price" : "Calories");
 
         return cartesian;
     }

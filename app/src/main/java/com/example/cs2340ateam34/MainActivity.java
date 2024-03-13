@@ -18,14 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Main","Entered main");
+        Log.d("Main", "Entered main");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String uname = getIntent().getExtras().getString("uname");
         Log.d("Main", uname);
         User user = User.getInstance(uname);
         Log.d("MAINGENDER", user.getProfGender());
-        Log.d("MAINHEIGHT", "" +user.getProfHeight());
+        Log.d("MAINHEIGHT", "" + user.getProfHeight());
         loadFragment(new HomeView(), false, user);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         frameLayout = findViewById(R.id.frameLayout);

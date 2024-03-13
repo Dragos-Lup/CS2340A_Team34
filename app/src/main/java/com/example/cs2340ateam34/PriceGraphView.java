@@ -35,7 +35,7 @@ public class PriceGraphView extends Fragment {
         List<DataEntry> data = new ArrayList<>();
         ArrayList<Meal> meals = user.getMealList();
         int mealsIndex = meals.size() - 1;
-        while(data.size() < 7 && mealsIndex >= 0) {
+        while(data.size() < 5 && mealsIndex >= 0) {
             Meal meal = meals.get(mealsIndex--);
             data.add(new ValueDataEntry(meal.getMealName(), meal.getPrice()));
         }
@@ -51,7 +51,7 @@ public class PriceGraphView extends Fragment {
                 .format("{%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-        cartesian.title("Price Graph");
+        cartesian.title("Price Over Past 5 Meals");
 
         cartesian.yScale().minimum(0d);
 

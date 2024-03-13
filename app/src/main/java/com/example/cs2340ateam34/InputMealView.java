@@ -1,6 +1,5 @@
 package com.example.cs2340ateam34;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DatabaseReference;
-
-import org.w3c.dom.Text;
 
 public class InputMealView extends Fragment {
     private EditText mealName;
@@ -72,14 +69,14 @@ public class InputMealView extends Fragment {
         });
 
         priceVisual.setOnClickListener(v -> {
-
+            loadFragment(new PriceGraphView());
         });
 
 
         calorieVisual.setOnClickListener(v -> {
-//            loadFragment(new CalorieGraphView());
-            Intent toCalGraph = new Intent(getActivity(), CalGraphTest.class);
-            startActivity(toCalGraph);
+            loadFragment(new CalorieGraphView());
+            /*Intent toCalGraph = new Intent(getActivity(), CalGraphTest.class);
+            startActivity(toCalGraph);*/
         });
         return view;
 

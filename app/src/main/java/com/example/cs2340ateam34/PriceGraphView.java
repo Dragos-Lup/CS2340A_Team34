@@ -21,13 +21,13 @@ import com.anychart.enums.TooltipPositionMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalorieGraphView extends Fragment {
+public class PriceGraphView extends Fragment {
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.calorie_graph, container, false);
-        AnyChartView anyChartView = view.findViewById(R.id.cal_graph);
+        View view = inflater.inflate(R.layout.price_graph, container, false);
+        AnyChartView anyChartView = view.findViewById(R.id.prc_graph);
 
         User user = User.getInstance();
         Cartesian cartesian = AnyChart.column();
@@ -37,7 +37,7 @@ public class CalorieGraphView extends Fragment {
         int mealsIndex = meals.size() - 1;
         while(data.size() < 7 && mealsIndex >= 0) {
             Meal meal = meals.get(mealsIndex--);
-            data.add(new ValueDataEntry(meal.getMealName(), meal.getCalories()));
+            data.add(new ValueDataEntry(meal.getMealName(), meal.getPrice()));
         }
 
         Column column = cartesian.column(data);
@@ -51,7 +51,7 @@ public class CalorieGraphView extends Fragment {
                 .format("{%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-        cartesian.title("Calorie Graph");
+        cartesian.title("Price Graph");
 
         cartesian.yScale().minimum(0d);
 
@@ -61,7 +61,7 @@ public class CalorieGraphView extends Fragment {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.xAxis(0).title("Meals");
-        cartesian.yAxis(0).title("Calories");
+        cartesian.yAxis(0).title("Price");
 
         anyChartView.setChart(cartesian);
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
  *
  */
 public class ExampleUnitTest {
+    //Very High Quality Tests
     @Test
     public void mealTesting1() {
         String name = "Coookies";

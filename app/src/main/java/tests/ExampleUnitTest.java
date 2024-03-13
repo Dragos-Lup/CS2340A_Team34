@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.anychart.charts.Cartesian;
-import com.example.cs2340ateam34.ChartHandler;
 import com.example.cs2340ateam34.Meal;
 import com.example.cs2340ateam34.Profile;
 import com.example.cs2340ateam34.User;
@@ -75,7 +73,7 @@ public class ExampleUnitTest {
         assertEquals("a", a.getUname());
         Meal meal = new Meal("Cookies", 230430, 5, "Last Week");
         a.addMeal(meal);
-        assertEquals(meal, a.getMealList().get(a.getMealList().size()-1));
+        assertEquals(meal, a.getMealList().get(a.getMealList().size() - 1));
     }
 
     @Test

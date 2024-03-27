@@ -10,7 +10,9 @@ public class IngredientsView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.ingredients_screen, container, false);
+        View view = inflater.inflate(R.layout.ingredients_screen, container, false);
+
+        return view;
     }
 
 }

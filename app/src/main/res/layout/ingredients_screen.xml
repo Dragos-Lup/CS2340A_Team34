@@ -9,18 +9,21 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
         android:text="Ingredients"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredient_name"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="145dp" />
 
     <EditText
         android:id="@+id/ingredient_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="89dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="22dp"
         android:hint="Enter Ingredient Name: "

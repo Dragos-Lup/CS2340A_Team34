@@ -25,6 +25,8 @@ public class User {
 
     private static ArrayList<Meal> mealList;
 
+    private static ArrayList<Ingredient> ingredientList = new ArrayList<>();
+
     private volatile Profile profile;
 
 
@@ -56,6 +58,7 @@ public class User {
 
                     initProfile(uname);
                     initMeals(unameParam);
+                    initIngredients(unameParam);
 
                     instance = new User();
                     instance.mealList = new ArrayList<>();
@@ -133,6 +136,34 @@ public class User {
                     }
                 });
     }
+    private static void initIngredients(String uname) {
+
+        dbRef.child("pantry").child(uname).get().addOnCompleteListener(
+                new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        Map data = (Map) (task.getResult().getValue());
+                        Set<String> keyset = data.keySet();
+                        Ingredient[] tempingredientlist = new Ingredient[keyset.size() - 1];
+                        for (String key : keyset) {
+                            if (key.equals("initingredient")) {
+                                continue;
+                            }
+                            Log.d("madsf", key);
+                            Map ingredientMap = (Map) (data.get(key));
+                            String name = ingredientMap.get("name").toString();
+                            int calories = Integer.parseInt(ingredientMap.get("calories").toString());
+                            int quantity = Integer.parseInt(ingredientMap.get("quantity").toString());
+                            String expiry = ingredientMap.get("expiry").toString();
+                            Ingredient ingredient = new Ingredient(name, quantity, calories, expiry);
+                            tempingredientlist[Integer.parseInt(key)] = ingredient;
+                        }
+                        for (Ingredient ingredient : tempingredientlist) {
+                            ingredientList.add(ingredient);
+                        }
+                    }
+                });
+    }
     public void addMeal(Meal meal) {
         // Get current date
         Date currentDate = new Date();
@@ -154,6 +185,33 @@ public class User {
         mealList.add(meal);
 
     }
+
+    public void addIngredient(Ingredient ingredient) {
+
+        dbRef.child("pantry").child(uname).child(""
+                + ingredientList.size()).child("name").setValue(ingredient.getIngredientName());
+        dbRef.child("pantry").child(uname).child(""
+                + ingredientList.size()).child("calories").setValue(ingredient.getCalories());
+        dbRef.child("pantry").child(uname).child(""
+                + ingredientList.size()).child("quantity").setValue(ingredient.getQuantity());
+        dbRef.child("pantry").child(uname).child(""
+                + ingredientList.size()).child("expiry").setValue(ingredient.getExpiry());
+        ingredientList.add(ingredient);
+
+    }
+
+    /*public void updateIngredient(Ingredient ingredient, int value) {
+
+        if (ingredient.getQuantity() + value <= 0){
+            dbRef.child("pantry").child(uname).child("name").setValue(ingredient.getIngredientName());
+        }
+        dbRef.child("pantry").child(uname).child("name").setValue(ingredient.getIngredientName());
+        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("calories").setValue(ingredient.getCalories());
+        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("quantity").setValue(ingredient.getQuantity());
+        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("expiry").setValue(ingredient.getExpiry() != "" ? ingredient.getExpiry() : "null");
+        ingredientList.add(ingredient);
+
+    }*/
 
     public String getUname() {
         return uname;
@@ -201,5 +259,8 @@ public class User {
     }
     public ArrayList<Meal> getMealList() {
         return mealList;
+    }
+    public ArrayList<Ingredient> getIngredientList() {
+        return ingredientList;
     }
 }

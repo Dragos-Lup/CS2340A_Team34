@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,15 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             Ingredient model = ingredientList.get(position);
             holder.name_tv.setText("" + model.getIngredientName());
             holder.quantity_tv.setText("" + model.getQuantity());
+            User user = User.getInstance();
+            holder.add_tv.setOnClickListener(v -> {
+                user.updateIngredient(model, 1);
+                holder.quantity_tv.setText("" + model.getQuantity());
+            });
+            holder.del_tv.setOnClickListener(v -> {
+                user.updateIngredient(model, -1);
+                holder.quantity_tv.setText("" + model.getQuantity());
+            });
         } else {
             return;
         }
@@ -44,7 +54,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name_tv, quantity_tv, add_tv, del_tv;
+        TextView name_tv, quantity_tv;
+        Button add_tv, del_tv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

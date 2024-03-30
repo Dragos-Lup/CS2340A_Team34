@@ -26,4 +26,8 @@ public class Ingredient {
     public String getExpiry(){
         return expiry;
     }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
 }

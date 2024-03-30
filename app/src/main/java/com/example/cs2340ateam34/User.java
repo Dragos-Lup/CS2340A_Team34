@@ -200,18 +200,25 @@ public class User {
 
     }
 
-    /*public void updateIngredient(Ingredient ingredient, int value) {
-
-        if (ingredient.getQuantity() + value <= 0){
-            dbRef.child("pantry").child(uname).child("name").setValue(ingredient.getIngredientName());
+    public void updateIngredient(Ingredient ingredient, int value) {
+        int index = -1;
+        for (int i = 0; i < ingredientList.size(); i++) {
+            if(ingredientList.get(i) == ingredient) {
+                index = i;
+                break;
+            }
         }
-        dbRef.child("pantry").child(uname).child("name").setValue(ingredient.getIngredientName());
-        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("calories").setValue(ingredient.getCalories());
-        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("quantity").setValue(ingredient.getQuantity());
-        dbRef.child("pantry").child(uname).child(ingredient.getIngredientName()).child("expiry").setValue(ingredient.getExpiry() != "" ? ingredient.getExpiry() : "null");
-        ingredientList.add(ingredient);
+        if (ingredient.getQuantity() + value <= 0) {
+            dbRef.child("pantry").child(uname).child("" + index).removeValue();
+            Log.d("a", "" + ingredientList.size());
+            ingredientList.remove(ingredient);
+            Log.d("b", "" + ingredientList.size());
+        } else {
+            dbRef.child("pantry").child(uname).child("" + index).child("quantity").setValue(ingredient.getQuantity() + value);
+            ingredient.setQuantity(ingredient.getQuantity() + value);
+        }
 
-    }*/
+    }
 
     public String getUname() {
         return uname;

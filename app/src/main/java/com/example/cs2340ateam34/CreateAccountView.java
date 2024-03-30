@@ -48,6 +48,7 @@ public class CreateAccountView extends AppCompatActivity {
                 mDatabase.child("users").child(uname).setValue(upass);
                 setProfile(mDatabase, uname);
                 setMeals(mDatabase, uname);
+                setPantry(mDatabase, uname);
                 logincode();
             } else {
                 TextView t = findViewById(R.id.invalidCredentialsText);
@@ -70,6 +71,9 @@ public class CreateAccountView extends AppCompatActivity {
         mDatabase.child("meals").child(uname).child("initmeal").child("price").setValue(0);
         mDatabase.child("meals").child(uname).child("initmeal").child("cals").setValue(0);
 
+    }
+    private void setPantry(DatabaseReference mDatabase, String uname) {
+        mDatabase.child("pantry").child(uname).child("initingredient").child("name").setValue("initingredient");
     }
     protected void logincode() {
         Intent toMainActivity = new Intent(CreateAccountView.this, MainActivity.class);

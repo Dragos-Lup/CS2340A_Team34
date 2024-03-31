@@ -29,6 +29,8 @@ public class User {
 
     private static ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
+    private static ArrayList<Recipe> recipeList = new ArrayList<>();
+
     private static int nextIngredientIndex;
 
     private volatile Profile profile;
@@ -63,6 +65,7 @@ public class User {
                     initProfile(uname);
                     initMeals(unameParam);
                     initIngredients(unameParam);
+                    initRecipes(unameParam);
 
                     instance = new User();
                     instance.mealList = new ArrayList<>();
@@ -172,6 +175,38 @@ public class User {
                     }
                 });
     }
+    private static void initRecipes(String uname) {
+
+        dbRef.child("recipes").get().addOnCompleteListener(
+                new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        Map data = (Map) (task.getResult().getValue());
+                        Set<String> keyset = data.keySet();
+                        for (String key : keyset) {
+                            if (key.equals("metadata")) {
+                                //Map metaMap = (Map) (data.get(key));
+                                //nextIngredientIndex = Integer.parseInt(metaMap.get("nextindex").toString());
+                                continue;
+                            }
+                            Log.d("madsf", key);
+                            String name = key.toString();
+                            Map recipeMap = (Map) (data.get(key));
+                            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
+                            Set<String> innerKeySet = recipeMap.keySet();
+                            for (String itemName : innerKeySet){
+                                int quantity = Integer.parseInt(recipeMap.get(itemName).toString());
+                                recipeItems.add(new RecipeItem(itemName, quantity));
+                            }
+                            Recipe recipe = new Recipe(name, recipeItems);
+                            recipeList.add(recipe);
+                        }
+                        /*for (Ingredient ingredient : tempingredientlist) {
+                            ingredientList.add(ingredient);
+                        }*/
+                    }
+                });
+    }
     public void addMeal(Meal meal) {
         // Get current date
         Date currentDate = new Date();
@@ -220,6 +255,31 @@ public class User {
 
     }
 
+    public void addRecipe(Recipe recipe) {
+        ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
+        for(RecipeItem item: recipeItems) {
+            dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(item.getQuantity());
+        }
+        recipeList.add(recipe);
+    }
+
+    public boolean checkRecipe(Recipe recipe) {
+        for (RecipeItem recipeItem : recipe.getRecipeItems()) {
+            boolean itemValid = false;
+            for (Ingredient  ingredient : ingredientList) {
+                if (ingredient.getIngredientName().equals(recipeItem.getName())){
+                    if (ingredient.getQuantity() >= recipeItem.getQuantity()){
+                        itemValid = true;
+                        break;
+                    }
+                }
+            }
+            if (!itemValid){
+                return false;
+            }
+        }
+        return true;
+    }
     public String getUname() {
         return uname;
     }
@@ -273,10 +333,16 @@ public class User {
     public int getNextIngredientIndex(){
         return nextIngredientIndex;
     }
+
+    public ArrayList<Recipe> getRecipeList() {
+        return recipeList;
+    }
     public MainActivity getActivity(){
         return activity;
     }
     public void setActivity(AppCompatActivity activity){
         this.activity = (MainActivity) activity;
     }
+
+
 }

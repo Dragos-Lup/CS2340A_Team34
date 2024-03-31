@@ -12,10 +12,8 @@
         android:layout_marginStart="170dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="170dp"
-        android:layout_marginBottom="34dp"
         android:text="Recipe"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,24 +24,80 @@
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="101dp"
         android:hint="Enter New Recipe Name: "
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="HardcodedText,MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/recipeenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="163dp"
         android:text="Enter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
+
+    <EditText
+        android:id="@+id/recipeitems"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="Ingredients: ex.(bread - 2, ginger - 4) "
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <TableLayout
+        android:id="@+id/recipe_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeitems">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1,2">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:gravity="center"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="10dp"
+                android:text="Name"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:gravity="center"
+                android:paddingHorizontal="30dp"
+                android:text="Can Make?"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipe_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

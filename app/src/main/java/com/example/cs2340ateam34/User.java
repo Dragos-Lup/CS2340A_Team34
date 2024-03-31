@@ -252,7 +252,6 @@ public class User {
             dbRef.child("pantry").child(uname).child("" + index).child("quantity").setValue(ingredient.getQuantity() + value);
             ingredient.setQuantity(ingredient.getQuantity() + value);
         }
-
     }
 
     public void addRecipe(Recipe recipe) {
@@ -324,6 +323,7 @@ public class User {
         }
         return out;
     }
+
     public ArrayList<Meal> getMealList() {
         return mealList;
     }

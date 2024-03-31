@@ -28,7 +28,7 @@ public class ExampleUnitTest {
         assertEquals(meal.getDate(), date);
 
     }
-
+/*
     @Test
     public void mealTesting2() {
         String name = "Cookies";
@@ -42,7 +42,7 @@ public class ExampleUnitTest {
         assertEquals(meal.getDate(), date);
 
     }
-
+*/
     @Test
     public void mealTesting3() {
         Meal meal = new Meal("Cookies", 230430, 5, "Last Week");

@@ -57,6 +57,36 @@
         app:layout_constraintTop_toBottomOf="@+id/recipe_name"
         tools:layout_editor_absoluteX="5dp" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="330dp"
+        android:layout_height="37dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8">
+
+        <RadioButton
+            android:id="@+id/filter_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All" />
+
+        <RadioButton
+            android:id="@+id/filter_makeable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Makeable" />
+
+        <RadioButton
+            android:id="@+id/filter_notMakeable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Makeable" />
+    </RadioGroup>
+
     <TableLayout
         android:id="@+id/recipe_table"
         android:layout_width="match_parent"
@@ -99,5 +129,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </TableLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter by:"
+        app:layout_constraintBottom_toTopOf="@+id/recipe_table"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeitems"
+        app:layout_constraintVertical_bias="0.458" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

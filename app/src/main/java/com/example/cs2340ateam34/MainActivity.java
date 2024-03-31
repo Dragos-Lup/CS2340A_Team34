@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         String uname = getIntent().getExtras().getString("uname");
         Log.d("Main", uname);
         User user = User.getInstance(uname);
+        user.setActivity(this);
         Log.d("MAINGENDER", user.getProfGender());
         Log.d("MAINHEIGHT", "" + user.getProfHeight());
         loadFragment(new HomeView(), false, user);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void loadFragment(Fragment fragment, boolean isAppInitialized, User user) {
+    public void loadFragment(Fragment fragment, boolean isAppInitialized, User user) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

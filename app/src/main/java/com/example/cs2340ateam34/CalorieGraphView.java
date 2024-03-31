@@ -29,41 +29,42 @@ public class CalorieGraphView extends Fragment {
         View view = inflater.inflate(R.layout.calorie_graph, container, false);
         AnyChartView anyChartView = view.findViewById(R.id.cal_graph);
 
-        User user = User.getInstance();
-        Cartesian cartesian = AnyChart.column();
+        GraphCreator calGrapher = new CalorieGraphCreator();
+//        User user = User.getInstance();
+//        Cartesian cartesian = AnyChart.column();
+//
+//        List<DataEntry> data = new ArrayList<>();
+//        ArrayList<Meal> meals = user.getMealList();
+//        int mealsIndex = meals.size() - 1;
+//        while (data.size() < 5 && mealsIndex >= 0) {
+//            Meal meal = meals.get(mealsIndex--);
+//            data.add(new ValueDataEntry(meal.getMealName(), meal.getCalories()));
+//        }
+//
+//        Column column = cartesian.column(data);
+//
+//        column.tooltip()
+//                .titleFormat("{%X}")
+//                .position(Position.CENTER_BOTTOM)
+//                .anchor(Anchor.CENTER_BOTTOM)
+//                .offsetX(0d)
+//                .offsetY(5d)
+//                .format("{%Value}{groupsSeparator: }");
+//
+//        cartesian.animation(true);
+//        cartesian.title("Calories Over Past 5 Meals");
+//
+//        cartesian.yScale().minimum(0d);
+//
+//        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+//
+//        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+//        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+//
+//        cartesian.xAxis(0).title("Meals");
+//        cartesian.yAxis(0).title("Calories");
 
-        List<DataEntry> data = new ArrayList<>();
-        ArrayList<Meal> meals = user.getMealList();
-        int mealsIndex = meals.size() - 1;
-        while (data.size() < 5 && mealsIndex >= 0) {
-            Meal meal = meals.get(mealsIndex--);
-            data.add(new ValueDataEntry(meal.getMealName(), meal.getCalories()));
-        }
-
-        Column column = cartesian.column(data);
-
-        column.tooltip()
-                .titleFormat("{%X}")
-                .position(Position.CENTER_BOTTOM)
-                .anchor(Anchor.CENTER_BOTTOM)
-                .offsetX(0d)
-                .offsetY(5d)
-                .format("{%Value}{groupsSeparator: }");
-
-        cartesian.animation(true);
-        cartesian.title("Calories Over Past 5 Meals");
-
-        cartesian.yScale().minimum(0d);
-
-        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
-
-        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-        cartesian.interactivity().hoverMode(HoverMode.BY_X);
-
-        cartesian.xAxis(0).title("Meals");
-        cartesian.yAxis(0).title("Calories");
-
-        anyChartView.setChart(cartesian);
+        anyChartView.setChart(calGrapher.makeGraph());
 
         return view;
     }

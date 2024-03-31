@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,20 +20,30 @@ public class RecipeView extends Fragment {
     EditText items;
     Button enter;
 
+    RadioButton filterAll;
+    RadioButton filterMakeable;
+    RadioButton filterNotMakeable;
+
     RecyclerView recipe_recycler_view;
     RecipeAdapter adapter;
     User user;
+
+    RecipeFilterPattern filter;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recipe_screen, container, false);
-
+        setFilter(new NoFilter());
         recipe_recycler_view = view.findViewById(R.id.recipe_recycler_view);
         recipeName = view.findViewById(R.id.recipe_name);
         items = view.findViewById(R.id.recipeitems);
         enter = view.findViewById(R.id.recipeenter);
+        filterAll = view.findViewById(R.id.filter_all);
+        filterMakeable = view.findViewById(R.id.filter_makeable);
+        filterNotMakeable = view.findViewById(R.id.filter_notMakeable);
 
         user = User.getInstance();
+        filterAll.toggle();
         setRecyclerView();
         enter.setOnClickListener(v -> {
             String name = recipeName.getText().toString();
@@ -52,14 +63,39 @@ public class RecipeView extends Fragment {
             recipeName.setText("");
             items.setText("");
         });
+
+        filterAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setFilter(new NoFilter());
+                setRecyclerView();
+            }
+        });
+
+        filterMakeable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setFilter(new MakeableFilter());
+                setRecyclerView();
+            }
+        });
+
+        filterNotMakeable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setFilter(new NotMakeableFilter());
+                setRecyclerView();
+            }
+        });
         return view;
     }
     private void setRecyclerView() {
         recipe_recycler_view.setHasFixedSize(true);
         recipe_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new RecipeAdapter(getContext(), user.getRecipeList());
+        adapter = new RecipeAdapter(getContext(), filter.filterRecipes(user.getRecipeList()));
         recipe_recycler_view.setAdapter(adapter);
     }
 
     // create the recipeview class
+
+    private void setFilter(RecipeFilterPattern input) {
+        filter = input;
+    }
 }

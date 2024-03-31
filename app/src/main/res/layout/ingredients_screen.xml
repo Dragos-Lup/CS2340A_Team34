@@ -9,14 +9,17 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="145dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="146dp"
         android:layout_marginBottom="5dp"
         android:text="Ingredients"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/ingredient_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="145dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/ingredient_name"
@@ -98,17 +101,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="161dp"
         android:layout_marginEnd="177dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
-        android:id="@+id/ingredienttable"
+        android:id="@+id/ingredient_table"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,48 +126,61 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:gravity="center"
-                android:text="Ingredient"
-                android:textStyle="bold"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="10dp"
-                android:layout_column="1"/>
+                android:text="Ingredient"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:gravity="center"
-                android:text="Quantity"
-                android:textStyle="bold"
                 android:paddingHorizontal="30dp"
-                android:layout_column="1"/>
+                android:text="Quantity"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="ADD"
-                android:textStyle="bold"
+                android:layout_column="1"
+                android:gravity="center"
                 android:paddingHorizontal="30dp"
-                android:layout_column="1"/>
+                android:text="ADD"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:gravity="center"
-                android:text="DEL"
-                android:textStyle="bold"
                 android:paddingHorizontal="30dp"
-                android:layout_column="1"/>
+                android:text="DEL"
+                android:textStyle="bold" />
         </TableRow>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
     </TableLayout>
+
+    <Button
+        android:id="@+id/new_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="133dp"
+        android:text="New Ingredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

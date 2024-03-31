@@ -42,6 +42,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             holder.del_tv.setOnClickListener(v -> {
                 user.updateIngredient(model, -1);
                 holder.quantity_tv.setText("" + model.getQuantity());
+                user.getActivity().loadFragment(new IngredientsView(), false, user);
             });
         } else {
             return;

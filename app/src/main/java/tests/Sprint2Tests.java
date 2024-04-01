@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Tests
  *
  */
-public class ExampleUnitTest {
+public class Sprint2Tests {
     @Test
     public void mealTesting1() {
         String name = "Coookies";
@@ -28,7 +28,7 @@ public class ExampleUnitTest {
         assertEquals(meal.getDate(), date);
 
     }
-
+    //Remove this shit
     @Test
     public void mealTesting2() {
         String name = "Cookies";
@@ -62,7 +62,7 @@ public class ExampleUnitTest {
 
     @Test
     public void userTesting1() {
-        User a = User.getInstance();
+        User a = User.getInstance("a");
         assertNull(a.getUname());
         assertEquals(new ArrayList<>(), a.getMealList());
     }

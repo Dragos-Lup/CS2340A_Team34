@@ -6,9 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-
-import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
+/*
+import com.anychart.AnyChart;
+
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
@@ -20,7 +21,7 @@ import com.anychart.enums.TooltipPositionMode;
 
 import java.util.ArrayList;
 import java.util.List;
-
+*/
 public class PriceGraphView extends Fragment {
 
     public View onCreateView(LayoutInflater inflater,
@@ -31,39 +32,39 @@ public class PriceGraphView extends Fragment {
 
         GraphCreator priceGrapher = new PriceGraphCreator();
 
-//        User user = User.getInstance();
-//        Cartesian cartesian = AnyChart.column();
-//
-//        List<DataEntry> data = new ArrayList<>();
-//        ArrayList<Meal> meals = user.getMealList();
-//        int mealsIndex = meals.size() - 1;
-//        while (data.size() < 5 && mealsIndex >= 0) {
-//            Meal meal = meals.get(mealsIndex--);
-//            data.add(new ValueDataEntry(meal.getMealName(), meal.getPrice()));
-//        }
-//
-//        Column column = cartesian.column(data);
-//
-//        column.tooltip()
-//                .titleFormat("{%X}")
-//                .position(Position.CENTER_BOTTOM)
-//                .anchor(Anchor.CENTER_BOTTOM)
-//                .offsetX(0d)
-//                .offsetY(5d)
-//                .format("{%Value}{groupsSeparator: }");
-//
-//        cartesian.animation(true);
-//        cartesian.title("Price Over Past 5 Meals");
-//
-//        cartesian.yScale().minimum(0d);
-//
-//        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
-//
-//        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-//        cartesian.interactivity().hoverMode(HoverMode.BY_X);
-//
-//        cartesian.xAxis(0).title("Meals");
-//        cartesian.yAxis(0).title("Price");
+        //        User user = User.getInstance();
+        //        Cartesian cartesian = AnyChart.column();
+        //
+        //        List<DataEntry> data = new ArrayList<>();
+        //        ArrayList<Meal> meals = user.getMealList();
+        //        int mealsIndex = meals.size() - 1;
+        //        while (data.size() < 5 && mealsIndex >= 0) {
+        //            Meal meal = meals.get(mealsIndex--);
+        //            data.add(new ValueDataEntry(meal.getMealName(), meal.getPrice()));
+        //        }
+        //
+        //        Column column = cartesian.column(data);
+        //
+        //        column.tooltip()
+        //                .titleFormat("{%X}")
+        //                .position(Position.CENTER_BOTTOM)
+        //                .anchor(Anchor.CENTER_BOTTOM)
+        //                .offsetX(0d)
+        //                .offsetY(5d)
+        //                .format("{%Value}{groupsSeparator: }");
+        //
+        //        cartesian.animation(true);
+        //        cartesian.title("Price Over Past 5 Meals");
+        //
+        //        cartesian.yScale().minimum(0d);
+        //
+        //        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+        //
+        //        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        //        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+        //
+        //        cartesian.xAxis(0).title("Meals");
+        //        cartesian.yAxis(0).title("Price");
 
         anyChartView.setChart(priceGrapher.makeGraph());
 

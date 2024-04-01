@@ -1,6 +1,6 @@
 package com.example.cs2340ateam34;
 
-import android.util.Log;
+//import android.util.Log;
 
 public class Profile {
 

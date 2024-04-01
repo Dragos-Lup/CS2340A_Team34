@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.example.cs2340ateam34.Ingredient;
-import com.example.cs2340ateam34.Meal;
-import com.example.cs2340ateam34.Profile;
+//import com.example.cs2340ateam34.Meal;
+//import com.example.cs2340ateam34.Profile;
 import com.example.cs2340ateam34.Recipe;
 import com.example.cs2340ateam34.RecipeItem;
 import com.example.cs2340ateam34.User;
@@ -30,9 +30,9 @@ public class Sprint3Tests {
     @Test
     public void ingredientTesting1() {
         Ingredient i = new Ingredient("Egg", 1, 2, "Never");
-        assertEquals(i.getCalories(),2);
-        assertEquals(i.getQuantity(),1);
-        assertEquals(i.getExpiry(),"Never");
+        assertEquals(i.getCalories(), 2);
+        assertEquals(i.getQuantity(), 1);
+        assertEquals(i.getExpiry(), "Never");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class Sprint3Tests {
 
         i.setQuantity(3);
 
-        assertEquals(i.getQuantity(),3);
+        assertEquals(i.getQuantity(), 3);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class Sprint3Tests {
         assertEquals(r.getRecipeItems().get(0).getName(), "egg");
     }
 
-// The next couple do not work, but the intent is there
+    // The next couple do not work, but the intent is there
 
     @Test
     public void userTestingIngredient1() {
@@ -69,11 +69,11 @@ public class Sprint3Tests {
         Ingredient i = new Ingredient("Egg", 1, 2, "Never");
         a.addIngredient(i);
 
-        assertEquals(a.getIngredientList().get(0).getQuantity(),1);
+        assertEquals(a.getIngredientList().get(0).getQuantity(), 1);
 
-        a.updateIngredient(i,3);
+        a.updateIngredient(i, 3);
 
-        assertEquals(a.getIngredientList().get(0).getQuantity(),4);
+        assertEquals(a.getIngredientList().get(0).getQuantity(), 4);
 
     }
 
@@ -84,9 +84,9 @@ public class Sprint3Tests {
         Ingredient i = new Ingredient("Egg", 1, 2, "Never");
         a.addIngredient(i);
 
-        assertEquals(a.getIngredientList().get(0).getQuantity(),1);
+        assertEquals(a.getIngredientList().get(0).getQuantity(), 1);
 
-        a.updateIngredient(i,-6);
+        a.updateIngredient(i, -6);
 
         assertTrue(a.getIngredientList().isEmpty());
 
@@ -112,8 +112,8 @@ public class Sprint3Tests {
         a.addIngredient(j);
         // SHOULDN'T BE [i,i,j]
         ArrayList<Ingredient> l = a.getIngredientList();
-        assertEquals(l.get(0).getIngredientName(),"Egg");
-        assertEquals(l.get(1).getIngredientName(),"Cheese");
+        assertEquals(l.get(0).getIngredientName(), "Egg");
+        assertEquals(l.get(1).getIngredientName(), "Cheese");
     }
 
     @Test

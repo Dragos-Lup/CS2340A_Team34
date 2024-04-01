@@ -16,25 +16,25 @@ import java.util.ArrayList;
 
 public class RecipeView extends Fragment {
 
-    EditText recipeName;
-    EditText items;
-    Button enter;
+    private EditText recipeName;
+    private EditText items;
+    private Button enter;
 
-    RadioButton filterAll;
-    RadioButton filterMakeable;
-    RadioButton filterNotMakeable;
+    private RadioButton filterAll;
+    private RadioButton filterMakeable;
+    private RadioButton filterNotMakeable;
 
-    RecyclerView recipe_recycler_view;
-    RecipeAdapter adapter;
-    User user;
+    private RecyclerView reciperecyclerview;
+    private RecipeAdapter adapter;
+    private User user;
 
-    RecipeFilterPattern filter;
+    private RecipeFilterPattern filter;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recipe_screen, container, false);
         setFilter(new NoFilter());
-        recipe_recycler_view = view.findViewById(R.id.recipe_recycler_view);
+        reciperecyclerview = view.findViewById(R.id.recipe_recycler_view);
         recipeName = view.findViewById(R.id.recipe_name);
         items = view.findViewById(R.id.recipeitems);
         enter = view.findViewById(R.id.recipeenter);
@@ -87,10 +87,10 @@ public class RecipeView extends Fragment {
         return view;
     }
     private void setRecyclerView() {
-        recipe_recycler_view.setHasFixedSize(true);
-        recipe_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
+        reciperecyclerview.setHasFixedSize(true);
+        reciperecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new RecipeAdapter(getContext(), filter.filterRecipes(user.getRecipeList()));
-        recipe_recycler_view.setAdapter(adapter);
+        reciperecyclerview.setAdapter(adapter);
     }
 
     // create the recipeview class

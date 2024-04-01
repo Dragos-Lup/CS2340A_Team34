@@ -34,7 +34,6 @@ public class Profile {
     }
 
     public String getGender() {
-        Log.d("gender", gender);
         return gender;
     }
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +20,7 @@ public class RecipeView extends Fragment {
     private EditText recipeName;
     private EditText items;
     private Button enter;
-
+    private TextView recipeError;
     private RadioButton filterAll;
     private RadioButton filterMakeable;
     private RadioButton filterNotMakeable;
@@ -38,6 +39,7 @@ public class RecipeView extends Fragment {
         recipeName = view.findViewById(R.id.recipe_name);
         items = view.findViewById(R.id.recipeitems);
         enter = view.findViewById(R.id.recipeenter);
+        recipeError = view.findViewById(R.id.recipe_error);
         filterAll = view.findViewById(R.id.filter_all);
         filterMakeable = view.findViewById(R.id.filter_makeable);
         filterNotMakeable = view.findViewById(R.id.filter_notMakeable);
@@ -50,18 +52,28 @@ public class RecipeView extends Fragment {
             ArrayList<RecipeItem> recipeItems = new ArrayList<>();
             String itemsraw = items.getText().toString();
             String[] itemssep = itemsraw.split(",");
+            boolean quantityError = false;
             for (String itemraw : itemssep) {
                 String[] item = itemraw.split("-");
                 String itemname = item[0].trim();
                 int itemquantity = Integer.parseInt(item[1].trim());
+                if (itemquantity < 1) {
+                    quantityError = true;
+                    break;
+                }
                 RecipeItem recipeItem = new RecipeItem(itemname, itemquantity);
                 recipeItems.add(recipeItem);
             }
-            Recipe recipe = new Recipe(name, recipeItems);
-            user.addRecipe(recipe);
-            setRecyclerView();
-            recipeName.setText("");
-            items.setText("");
+            if (quantityError) {
+                recipeError.setText("Input quantity cannot be less than 1.");
+            } else {
+                Recipe recipe = new Recipe(name, recipeItems);
+                user.addRecipe(recipe);
+                setRecyclerView();
+                recipeError.setText("Recipe Added!");
+                recipeName.setText("");
+                items.setText("");
+            }
         });
 
         filterAll.setOnCheckedChangeListener((buttonView, isChecked) -> {

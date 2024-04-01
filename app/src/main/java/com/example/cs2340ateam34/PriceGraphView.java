@@ -7,21 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import com.anychart.AnyChartView;
-/*
-import com.anychart.AnyChart;
 
-import com.anychart.chart.common.dataentry.DataEntry;
-import com.anychart.chart.common.dataentry.ValueDataEntry;
-import com.anychart.charts.Cartesian;
-import com.anychart.core.cartesian.series.Column;
-import com.anychart.enums.Anchor;
-import com.anychart.enums.HoverMode;
-import com.anychart.enums.Position;
-import com.anychart.enums.TooltipPositionMode;
-
-import java.util.ArrayList;
-import java.util.List;
-*/
 public class PriceGraphView extends Fragment {
 
     public View onCreateView(LayoutInflater inflater,

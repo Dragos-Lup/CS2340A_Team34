@@ -17,20 +17,20 @@ import java.util.ArrayList;
 
 public class IngredientsView extends Fragment {
 
-    EditText ingredientName;
-    EditText ingredientQuantity;
-    EditText ingredientCalories;
-    EditText ingredientExpiry;
+    private EditText ingredientName;
+    private EditText ingredientQuantity;
+    private EditText ingredientCalories;
+    private EditText ingredientExpiry;
 
-    RecyclerView recycler_view;
-    IngredientAdapter adapter;
-    User user;
+    private RecyclerView recyclerview;
+    private IngredientAdapter adapter;
+    private User user;
 
-    TextView errorDisplay;
-    TableLayout ingredientsTable;
+    private TextView errorDisplay;
+    private TableLayout ingredientsTable;
 
-    Button enterButton;
-    Button newIngredientButton;
+    private Button enterButton;
+    private Button newIngredientButton;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class IngredientsView extends Fragment {
 
 
         errorDisplay = view.findViewById(R.id.error);
-        recycler_view = view.findViewById(R.id.recycler_view);
+        recyclerview = view.findViewById(R.id.recycler_view);
         setRecyclerView();
         newIngredientButton = view.findViewById(R.id.new_ingredient);
 
@@ -56,7 +56,7 @@ public class IngredientsView extends Fragment {
 
 
         enterButton.setOnClickListener(v -> {
-            if(Integer.parseInt(ingredientQuantity.getText().toString()) <= 0) {
+            if (Integer.parseInt(ingredientQuantity.getText().toString()) <= 0) {
                 errorDisplay.setText("Input cannot be negative");
             } else if (checkExist(ingredientName.getText().toString())) {
                 errorDisplay.setText("Cannot add duplicate ingredients");
@@ -76,12 +76,12 @@ public class IngredientsView extends Fragment {
     }
 
     private void setRecyclerView() {
-        recycler_view.setHasFixedSize(true);
-        recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new IngredientAdapter(getContext(), user.getIngredientList());
-        recycler_view.setAdapter(adapter);
+        recyclerview.setAdapter(adapter);
     }
-    private void formToggle(boolean showing){
+    private void formToggle(boolean showing) {
         int val = showing ? View.VISIBLE : View.INVISIBLE;
         int alt = showing ? View.INVISIBLE : View.VISIBLE;
         ingredientName.setVisibility(val);
@@ -101,7 +101,9 @@ public class IngredientsView extends Fragment {
     boolean checkExist(String ingredientName) {
         ArrayList<Ingredient> ingredientsList = user.getIngredientList();
         for (Ingredient ingredient: ingredientsList) {
-            if (ingredientName.equals(ingredient.getIngredientName())) return true;
+            if (ingredientName.equals(ingredient.getIngredientName())) {
+                return true;
+            }
         }
         return false;
     }

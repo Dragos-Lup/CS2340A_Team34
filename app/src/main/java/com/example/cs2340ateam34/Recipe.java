@@ -7,17 +7,17 @@ public class Recipe {
     private String name;
     private ArrayList<RecipeItem> recipeItems;
 
-    public Recipe(String name, ArrayList<RecipeItem> recipeItems){
+    public Recipe(String name, ArrayList<RecipeItem> recipeItems) {
         this.name = name;
         this.recipeItems = recipeItems;
     }
-    public Recipe(String name){
-        this(name,null);
+    public Recipe(String name) {
+        this(name, null);
     }
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public ArrayList<RecipeItem> getRecipeItems(){
+    public ArrayList<RecipeItem> getRecipeItems() {
         return recipeItems;
     }
 

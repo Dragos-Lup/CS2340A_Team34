@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotMakeableFilter implements RecipeFilterPattern {
-    User user;
+    private User user;
     public NotMakeableFilter() {
         user = User.getInstance();
     }

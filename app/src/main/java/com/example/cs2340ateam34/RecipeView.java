@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,31 +16,28 @@ import java.util.ArrayList;
 
 public class RecipeView extends Fragment {
 
-    EditText recipeName;
-    EditText items;
-    Button enter;
+    private EditText recipeName;
+    private EditText items;
+    private Button enter;
 
-    TextView recipeError;
+    private RadioButton filterAll;
+    private RadioButton filterMakeable;
+    private RadioButton filterNotMakeable;
 
-    RadioButton filterAll;
-    RadioButton filterMakeable;
-    RadioButton filterNotMakeable;
+    private RecyclerView reciperecyclerview;
+    private RecipeAdapter adapter;
+    private User user;
 
-    RecyclerView recipe_recycler_view;
-    RecipeAdapter adapter;
-    User user;
-
-    RecipeFilterPattern filter;
+    private RecipeFilterPattern filter;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recipe_screen, container, false);
         setFilter(new NoFilter());
-        recipe_recycler_view = view.findViewById(R.id.recipe_recycler_view);
+        reciperecyclerview = view.findViewById(R.id.recipe_recycler_view);
         recipeName = view.findViewById(R.id.recipe_name);
         items = view.findViewById(R.id.recipeitems);
         enter = view.findViewById(R.id.recipeenter);
-        recipeError = view.findViewById(R.id.recipe_error);
         filterAll = view.findViewById(R.id.filter_all);
         filterMakeable = view.findViewById(R.id.filter_makeable);
         filterNotMakeable = view.findViewById(R.id.filter_notMakeable);
@@ -54,29 +50,18 @@ public class RecipeView extends Fragment {
             ArrayList<RecipeItem> recipeItems = new ArrayList<>();
             String itemsraw = items.getText().toString();
             String[] itemssep = itemsraw.split(",");
-            boolean quantityError = false;
             for (String itemraw : itemssep) {
                 String[] item = itemraw.split("-");
                 String itemname = item[0].trim();
                 int itemquantity = Integer.parseInt(item[1].trim());
-                if (itemquantity < 1) {
-                    quantityError = true;
-                    break;
-                }
                 RecipeItem recipeItem = new RecipeItem(itemname, itemquantity);
                 recipeItems.add(recipeItem);
             }
-            if (quantityError) {
-                recipeError.setText("Input quantity cannot be less than 1.");
-            } else {
-                Recipe recipe = new Recipe(name, recipeItems);
-                user.addRecipe(recipe);
-                recipeError.setText("");
-                recipeName.setText("");
-                items.setText("");
-            }
-
+            Recipe recipe = new Recipe(name, recipeItems);
+            user.addRecipe(recipe);
             setRecyclerView();
+            recipeName.setText("");
+            items.setText("");
         });
 
         filterAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -102,10 +87,10 @@ public class RecipeView extends Fragment {
         return view;
     }
     private void setRecyclerView() {
-        recipe_recycler_view.setHasFixedSize(true);
-        recipe_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
+        reciperecyclerview.setHasFixedSize(true);
+        reciperecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new RecipeAdapter(getContext(), filter.filterRecipes(user.getRecipeList()));
-        recipe_recycler_view.setAdapter(adapter);
+        reciperecyclerview.setAdapter(adapter);
     }
 
     // create the recipeview class

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MakeableFilter implements RecipeFilterPattern {
-    User user;
+    private User user;
     public MakeableFilter() {
         user = User.getInstance();
     }

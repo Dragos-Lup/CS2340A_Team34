@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder>{
+public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
 
-    Context context;
-    List<Ingredient> ingredientList;
+    private Context context;
+    private List<Ingredient> ingredientList;
 
-    public IngredientAdapter(Context context, List<Ingredient> ingredientList){
+    public IngredientAdapter(Context context, List<Ingredient> ingredientList) {
         this.context = context;
         this.ingredientList = ingredientList;
     }
@@ -30,18 +30,18 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (ingredientList != null && ingredientList.size() > 0){
+        if (ingredientList != null && ingredientList.size() > 0) {
             Ingredient model = ingredientList.get(position);
-            holder.name_tv.setText("" + model.getIngredientName());
-            holder.quantity_tv.setText("" + model.getQuantity());
+            holder.nametv.setText("" + model.getIngredientName());
+            holder.quantitytv.setText("" + model.getQuantity());
             User user = User.getInstance();
-            holder.add_tv.setOnClickListener(v -> {
+            holder.addtv.setOnClickListener(v -> {
                 user.updateIngredient(model, 1);
-                holder.quantity_tv.setText("" + model.getQuantity());
+                holder.quantitytv.setText("" + model.getQuantity());
             });
-            holder.del_tv.setOnClickListener(v -> {
+            holder.deltv.setOnClickListener(v -> {
                 user.updateIngredient(model, -1);
-                holder.quantity_tv.setText("" + model.getQuantity());
+                holder.quantitytv.setText("" + model.getQuantity());
                 user.getActivity().loadFragment(new IngredientsView(), false, user);
             });
         } else {
@@ -55,15 +55,17 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name_tv, quantity_tv;
-        Button add_tv, del_tv;
+        private TextView nametv;
+        private TextView quantitytv;
+        private Button addtv;
+        private Button deltv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name_tv = itemView.findViewById(R.id.name_tv);
-            quantity_tv = itemView.findViewById(R.id.quantity_tv);
-            add_tv = itemView.findViewById(R.id.add_tv);
-            del_tv = itemView.findViewById(R.id.del_tv);
+            nametv = itemView.findViewById(R.id.name_tv);
+            quantitytv = itemView.findViewById(R.id.quantity_tv);
+            addtv = itemView.findViewById(R.id.add_tv);
+            deltv = itemView.findViewById(R.id.del_tv);
 
         }
     }

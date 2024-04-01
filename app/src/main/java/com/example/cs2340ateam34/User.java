@@ -155,17 +155,21 @@ public class User {
                         for (String key : keyset) {
                             if (key.equals("metadata")) {
                                 Map metaMap = (Map) (data.get(key));
-                                nextIngredientIndex = Integer.parseInt(metaMap.get("nextindex").toString());
+                                nextIngredientIndex = Integer.
+                                        parseInt(metaMap.get("nextindex").toString());
                                 continue;
                             }
                             Log.d("madsf", key);
                             Map ingredientMap = (Map) (data.get(key));
                             String name = ingredientMap.get("name").toString();
-                            int calories = Integer.parseInt(ingredientMap.get("calories").toString());
-                            int quantity = Integer.parseInt(ingredientMap.get("quantity").toString());
+                            int calories = Integer.parseInt(
+                                    ingredientMap.get("calories").toString());
+                            int quantity = Integer.parseInt(
+                                    ingredientMap.get("quantity").toString());
                             String expiry = ingredientMap.get("expiry").toString();
                             int index = Integer.parseInt(key.toString());
-                            Ingredient ingredient = new Ingredient(name, quantity, calories, expiry, index);
+                            Ingredient ingredient = new Ingredient(
+                                    name, quantity, calories, expiry, index);
                             //tempingredientlist[Integer.parseInt(key)] = ingredient;
                             ingredientList.add(ingredient);
                         }
@@ -186,7 +190,8 @@ public class User {
                         for (String key : keyset) {
                             if (key.equals("metadata")) {
                                 //Map metaMap = (Map) (data.get(key));
-                                //nextIngredientIndex = Integer.parseInt(metaMap.get("nextindex").toString());
+                                //nextIngredientIndex = Integer.parseInt(
+                                // metaMap.get("nextindex").toString());
                                 continue;
                             }
                             Log.d("madsf", key);
@@ -194,7 +199,7 @@ public class User {
                             Map recipeMap = (Map) (data.get(key));
                             ArrayList<RecipeItem> recipeItems = new ArrayList<>();
                             Set<String> innerKeySet = recipeMap.keySet();
-                            for (String itemName : innerKeySet){
+                            for (String itemName : innerKeySet) {
                                 int quantity = Integer.parseInt(recipeMap.get(itemName).toString());
                                 recipeItems.add(new RecipeItem(itemName, quantity));
                             }
@@ -231,14 +236,19 @@ public class User {
 
     public void addIngredient(Ingredient ingredient) {
         ingredient.setIndex(nextIngredientIndex);
-        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child("name").setValue(ingredient.getIngredientName());
-        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child("calories").setValue(ingredient.getCalories());
-        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child("quantity").setValue(ingredient.getQuantity());
-        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child("expiry").setValue(ingredient.getExpiry());
+        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
+                "name").setValue(ingredient.getIngredientName());
+        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
+                "calories").setValue(ingredient.getCalories());
+        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
+                "quantity").setValue(ingredient.getQuantity());
+        dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
+                "expiry").setValue(ingredient.getExpiry());
         ingredientList.add(ingredient);
 
         nextIngredientIndex++;
-        dbRef.child("pantry").child(uname).child("metadata").child("nextindex").setValue(nextIngredientIndex);
+        dbRef.child("pantry").child(uname).child("metadata").child(
+                "nextindex").setValue(nextIngredientIndex);
     }
 
     public void updateIngredient(Ingredient ingredient, int value) {
@@ -249,15 +259,17 @@ public class User {
             ingredientList.remove(ingredient);
             Log.d("b", "" + ingredientList.size());
         } else {
-            dbRef.child("pantry").child(uname).child("" + index).child("quantity").setValue(ingredient.getQuantity() + value);
+            dbRef.child("pantry").child(uname).child("" + index).child(
+                    "quantity").setValue(ingredient.getQuantity() + value);
             ingredient.setQuantity(ingredient.getQuantity() + value);
         }
     }
 
     public void addRecipe(Recipe recipe) {
         ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
-        for(RecipeItem item: recipeItems) {
-            dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(item.getQuantity());
+        for (RecipeItem item: recipeItems) {
+            dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(
+                    item.getQuantity());
         }
         recipeList.add(recipe);
     }
@@ -266,14 +278,14 @@ public class User {
         for (RecipeItem recipeItem : recipe.getRecipeItems()) {
             boolean itemValid = false;
             for (Ingredient  ingredient : ingredientList) {
-                if (ingredient.getIngredientName().equals(recipeItem.getName())){
-                    if (ingredient.getQuantity() >= recipeItem.getQuantity()){
+                if (ingredient.getIngredientName().equals(recipeItem.getName())) {
+                    if (ingredient.getQuantity() >= recipeItem.getQuantity()) {
                         itemValid = true;
                         break;
                     }
                 }
             }
-            if (!itemValid){
+            if (!itemValid) {
                 return false;
             }
         }
@@ -288,21 +300,24 @@ public class User {
     }
     public void setProfGender(String inputGender) {
         profile.setGender(inputGender);
-        dbRef.child("profile").child(uname).child("gender").setValue(inputGender);
+        dbRef.child("profile").child(uname).child("gender").setValue(
+                inputGender);
     }
     public int getProfHeight() {
         return profile.getHeight();
     }
     public void setProfHeight(int inputHeight) {
         profile.setHeight(inputHeight);
-        dbRef.child("profile").child(uname).child("height").setValue(inputHeight);
+        dbRef.child("profile").child(uname).child("height").setValue(
+                inputHeight);
     }
     public int getProfWeight() {
         return profile.getWeight();
     }
     public void setProfWeight(int inputWeight) {
         profile.setWeight(inputWeight);
-        dbRef.child("profile").child(uname).child("weight").setValue(inputWeight);
+        dbRef.child("profile").child(uname).child("weight").setValue(
+                inputWeight);
     }
 
     public double getCurrDayCalorieIntake() {
@@ -330,17 +345,17 @@ public class User {
     public ArrayList<Ingredient> getIngredientList() {
         return ingredientList;
     }
-    public int getNextIngredientIndex(){
+    public int getNextIngredientIndex() {
         return nextIngredientIndex;
     }
 
     public ArrayList<Recipe> getRecipeList() {
         return recipeList;
     }
-    public MainActivity getActivity(){
+    public MainActivity getActivity() {
         return activity;
     }
-    public void setActivity(AppCompatActivity activity){
+    public void setActivity(AppCompatActivity activity) {
         this.activity = (MainActivity) activity;
     }
 

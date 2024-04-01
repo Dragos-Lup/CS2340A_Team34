@@ -19,28 +19,28 @@ public class Ingredient {
         this.index = index;
     }
 
-    public String getIngredientName(){
+    public String getIngredientName() {
         return ingredientName;
     }
 
-    public int getQuantity(){
+    public int getQuantity() {
         return quantity;
     }
-    public int getCalories(){
+    public int getCalories() {
         return calories;
     }
-    public String getExpiry(){
+    public String getExpiry() {
         return expiry;
     }
 
-    public void setQuantity(int quantity){
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
-    public void setIndex(int i){
+    public void setIndex(int i) {
         this.index = index;
     }
 }

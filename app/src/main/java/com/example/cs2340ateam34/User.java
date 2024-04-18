@@ -152,6 +152,7 @@ public class User {
                         Map data = (Map) (task.getResult().getValue());
                         Set<String> keyset = data.keySet();
                         //Ingredient[] tempingredientlist = new Ingredient[keyset.size() - 1];
+                        Log.d("HHHHHHHHHHHHHHHHHHHD", data.toString());
                         for (String key : keyset) {
                             if (key.equals("metadata")) {
                                 Map metaMap = (Map) (data.get(key));
@@ -161,6 +162,7 @@ public class User {
                             }
                             Log.d("madsf", key);
                             Map ingredientMap = (Map) (data.get(key));
+                            Log.d("HHHHHHHHHHHHHHHHHHH", ingredientMap.toString());
                             String name = ingredientMap.get("name").toString();
                             int calories = Integer.parseInt(
                                     ingredientMap.get("calories").toString());

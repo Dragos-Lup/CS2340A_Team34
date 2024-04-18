@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -358,6 +359,5 @@ public class User {
     public void setActivity(AppCompatActivity activity) {
         this.activity = (MainActivity) activity;
     }
-
 
 }

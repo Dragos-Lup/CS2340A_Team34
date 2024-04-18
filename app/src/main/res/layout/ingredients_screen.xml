@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/ingredient_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="89dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="127dp"
@@ -43,7 +43,7 @@
     <EditText
         android:id="@+id/quantity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="90dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="88dp"
@@ -60,7 +60,7 @@
     <EditText
         android:id="@+id/calories"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="89dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="96dp"
@@ -76,7 +76,7 @@
     <EditText
         android:id="@+id/expiry"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="89dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="90dp"
@@ -118,8 +118,8 @@
 
     <TableLayout
         android:id="@+id/ingredient_table"
-        android:layout_width="419dp"
-        android:layout_height="183dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +184,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="584dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="133dp"
         android:text="New Ingredient"
         app:layout_constraintEnd_toEndOf="parent"

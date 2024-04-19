@@ -10,12 +10,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="155dp"
-        android:layout_marginEnd="189dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="65dp"
-        android:text="Welcome"
+        android:text="Welcome to the Meal Tracking App"
+        android:textColor="#2196F3"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Log_In_Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/Log_In_Button"
@@ -36,4 +39,5 @@
         android:text="Create Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

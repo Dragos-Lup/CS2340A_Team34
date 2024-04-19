@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Sprint3Tests {
     @Test
     public void userTesting() {
-        User a = User.getInstance();
+        User a = User.getInstance("a");
         assertNull(a.getUname());
     }
 

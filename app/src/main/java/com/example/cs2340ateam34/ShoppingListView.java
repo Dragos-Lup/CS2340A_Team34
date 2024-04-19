@@ -26,7 +26,6 @@ public class ShoppingListView extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shopping_list_screen, container, false);
-        setFilter(filter);
         shoppingrecyclerview = view.findViewById(R.id.shopping_list_recycler_view);
         buyItems = view.findViewById(R.id.button);
 
@@ -36,9 +35,6 @@ public class ShoppingListView extends Fragment {
 
     }
 
-    private void setFilter(FoodPatternFilter input) {
-        filter = input;
-    }
 
     private void setRecyclerView() {
         shoppingrecyclerview.setHasFixedSize(true);

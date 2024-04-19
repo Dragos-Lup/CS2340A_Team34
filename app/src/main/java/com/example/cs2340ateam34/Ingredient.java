@@ -6,6 +6,7 @@ public class Ingredient {
     private int calories;
     private String expiry;
 
+    private boolean buying;
     private int index;
 
     public Ingredient(String ingredientName, int quantity, int calories, String expiry) {
@@ -17,6 +18,7 @@ public class Ingredient {
         this.calories = calories;
         this.expiry = expiry;
         this.index = index;
+        this.buying = false;
     }
 
     public String getIngredientName() {
@@ -40,7 +42,14 @@ public class Ingredient {
     public int getIndex() {
         return index;
     }
-    public void setIndex(int i) {
+    public void setIndex(int index) {
         this.index = index;
+    }
+
+    public void setBuying(boolean b) {
+        this.buying = b;
+    }
+    public boolean getBuying(){
+        return this.buying;
     }
 }

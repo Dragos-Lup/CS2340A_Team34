@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,9 +29,13 @@ public class User {
 
     private static ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
+    private static ArrayList<Ingredient> shoppingList = new ArrayList<>();
+
     private static ArrayList<Recipe> recipeList = new ArrayList<>();
 
     private static int nextIngredientIndex;
+
+    private static int nextShoppingListIndex;
 
     private volatile Profile profile;
 
@@ -67,7 +70,7 @@ public class User {
                     initMeals(unameParam);
                     initIngredients(unameParam);
                     initRecipes(unameParam);
-
+                    initShoppingList(unameParam);
                     instance = new User();
                     instance.mealList = new ArrayList<>();
                     instance.profile = new Profile(-1, -1, "Undefined");
@@ -180,6 +183,42 @@ public class User {
                     }
                 });
     }
+    private static void initShoppingList(String uname) {
+
+        dbRef.child("shoppinglist").child(uname).get().addOnCompleteListener(
+                new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        Map data = (Map) (task.getResult().getValue());
+                        Set<String> keyset = data.keySet();
+                        //Ingredient[] tempingredientlist = new Ingredient[keyset.size() - 1];
+                        for (String key : keyset) {
+                            if (key.equals("metadata")) {
+                                Map metaMap = (Map) (data.get(key));
+                                nextShoppingListIndex = Integer.
+                                        parseInt(metaMap.get("nextindex").toString());
+                                continue;
+                            }
+                            Log.d("madsf", key);
+                            Map ingredientMap = (Map) (data.get(key));
+                            String name = ingredientMap.get("name").toString();
+                            int calories = Integer.parseInt(
+                                    ingredientMap.get("calories").toString());
+                            int quantity = Integer.parseInt(
+                                    ingredientMap.get("quantity").toString());
+                            String expiry = ingredientMap.get("expiry").toString();
+                            int index = Integer.parseInt(key.toString());
+                            Ingredient ingredient = new Ingredient(
+                                    name, quantity, calories, expiry, index);
+                            //tempingredientlist[Integer.parseInt(key)] = ingredient;
+                            shoppingList.add(ingredient);
+                        }
+                        /*for (Ingredient ingredient : tempingredientlist) {
+                            ingredientList.add(ingredient);
+                        }*/
+                    }
+                });
+    }
     private static void initRecipes(String uname) {
 
         dbRef.child("recipes").get().addOnCompleteListener(
@@ -235,8 +274,25 @@ public class User {
 
     }
 
+    public void addIngredientShoppingList(Ingredient ingredient) {
+        ingredient.setIndex(nextShoppingListIndex);
+        dbRef.child("shoppinglist").child(uname).child("" + nextShoppingListIndex).child(
+                "name").setValue(ingredient.getIngredientName());
+        dbRef.child("shoppinglist").child(uname).child("" + nextShoppingListIndex).child(
+                "calories").setValue(ingredient.getCalories());
+        dbRef.child("shoppinglist").child(uname).child("" + nextShoppingListIndex).child(
+                "quantity").setValue(ingredient.getQuantity());
+        dbRef.child("shoppinglist").child(uname).child("" + nextShoppingListIndex).child(
+                "expiry").setValue(ingredient.getExpiry());
+        shoppingList.add(ingredient);
+        Log.d("" + shoppingList.size(), "asef");
+        nextShoppingListIndex++;
+        dbRef.child("shoppinglist").child(uname).child("metadata").child(
+                "nextindex").setValue(nextShoppingListIndex);
+    }
     public void addIngredient(Ingredient ingredient) {
         ingredient.setIndex(nextIngredientIndex);
+        Log.d("ingredientcration", "" + ingredient.getIndex() + ingredient.getIngredientName());
         dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
                 "name").setValue(ingredient.getIngredientName());
         dbRef.child("pantry").child(uname).child("" + nextIngredientIndex).child(
@@ -253,6 +309,7 @@ public class User {
     }
 
     public void updateIngredient(Ingredient ingredient, int value) {
+        Log.d("BRUHHUUHUHUHUH", "" + ingredient.getIndex() + ingredient.getIngredientName());
         int index = ingredient.getIndex();
         if (ingredient.getQuantity() + value <= 0) {
             dbRef.child("pantry").child(uname).child("" + index).removeValue();
@@ -266,6 +323,32 @@ public class User {
         }
     }
 
+    public void updateIngredientShoppingList(Ingredient ingredient, int value) {
+        int index = ingredient.getIndex();
+        if (ingredient.getQuantity() + value <= 0 || value == 0) {
+            dbRef.child("shoppinglist").child(uname).child("" + index).removeValue();
+            Log.d("a", "" + ingredientList.size());
+            shoppingList.remove(ingredient);
+            Log.d("b", "" + ingredientList.size());
+        } else {
+            dbRef.child("shoppinglist").child(uname).child("" + index).child(
+                    "quantity").setValue(ingredient.getQuantity() + value);
+            ingredient.setQuantity(ingredient.getQuantity() + value);
+        }
+    }
+
+    public void buyIngredient(Ingredient ingredient) {
+        updateIngredientShoppingList(ingredient, 0);
+        for (Ingredient pantryIngredient : ingredientList) {
+            if (pantryIngredient.getIngredientName().equals(ingredient.getIngredientName())) {
+                updateIngredient(pantryIngredient, ingredient.getQuantity());
+                return;
+            }
+        }
+        ingredient.setBuying(false);
+        addIngredient(ingredient);
+
+    }
     public void addRecipe(Recipe recipe) {
         ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
         for (RecipeItem item: recipeItems) {
@@ -358,6 +441,9 @@ public class User {
     }
     public void setActivity(AppCompatActivity activity) {
         this.activity = (MainActivity) activity;
+    }
+    public ArrayList<Ingredient> getShoppingList() {
+        return shoppingList;
     }
 
 }

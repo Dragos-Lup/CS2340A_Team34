@@ -25,9 +25,9 @@
 
 
     <EditText
-        android:id="@+id/ingredient_name"
+        android:id="@+id/buyingredient_name"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="108dp"
@@ -39,7 +39,7 @@
         tools:ignore="HardcodedText,MissingConstraints" />
 
     <EditText
-        android:id="@+id/quantity"
+        android:id="@+id/buyquantity"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginStart="141dp"
@@ -47,16 +47,16 @@
         android:layout_marginEnd="142dp"
         android:layout_marginBottom="20dp"
         android:hint="Enter Quantity: "
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buybutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredient_name"
+        app:layout_constraintTop_toBottomOf="@+id/buyingredient_name"
         app:layout_constraintVertical_bias="0.034"
         tools:ignore="HardcodedText,MissingConstraints" />
 
     <Button
-        android:id="@+id/enter_button"
+        android:id="@+id/buyenter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -65,9 +65,18 @@
         android:text="Enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantity"
+        app:layout_constraintTop_toBottomOf="@+id/buyquantity"
         tools:ignore="MissingConstraints" />
-
+    <TextView
+        android:id="@+id/buyerror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="161dp"
+        android:layout_marginEnd="177dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="409dp"
@@ -161,7 +170,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="284dp"

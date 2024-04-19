@@ -10,9 +10,9 @@ public class MakeableFilter implements RecipeFilterPattern {
     }
 
     @Override
-    public List<Recipe> filterRecipes(List<Recipe> recipes) {
-        List<Recipe> filteredRecipes = new ArrayList<>();
-        for (Recipe recipe : recipes) {
+    public List<RecipeBuilder> filterRecipes(List<RecipeBuilder> recipes) {
+        List<RecipeBuilder> filteredRecipes = new ArrayList<>();
+        for (RecipeBuilder recipe : recipes) {
             if (user.checkRecipe(recipe)) {
                 filteredRecipes.add(recipe);
             }

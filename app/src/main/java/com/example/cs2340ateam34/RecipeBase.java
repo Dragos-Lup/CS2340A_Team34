@@ -18,7 +18,7 @@ public class RecipeBase implements RecipeComponent {
 
     @Override
     public int getQuantity() {
-        return 0;
+        return quantity;
     }
 
     @Override

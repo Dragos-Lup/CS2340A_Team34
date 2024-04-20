@@ -7,7 +7,7 @@ public class NoFilter implements RecipeFilterPattern {
     }
 
     @Override
-    public List<Recipe> filterRecipes(List<Recipe> recipes) {
+    public List<RecipeBuilder> filterRecipes(List<RecipeBuilder> recipes) {
         return recipes;
     }
 }

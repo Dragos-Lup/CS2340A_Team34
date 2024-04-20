@@ -423,6 +423,45 @@ public class User {
         return out;
     }
 
+    public void shopIngredients(ArrayList<RecipeComponent> recipeComponents) {
+        for (RecipeComponent rc : recipeComponents) {
+            Ingredient ingredient = searchIngredientList(rc.getName());
+            Ingredient shoppingIngredient = searchShoppingList(rc.getName());
+            if (ingredient == null) {
+                if (shoppingIngredient == null) {
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity(), -1, ""));
+                } else {
+                    if (shoppingIngredient.getQuantity() < rc.getQuantity()) {
+                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - shoppingIngredient.getQuantity());
+                    }
+                }
+            } else if (ingredient.getQuantity() < rc.getQuantity()) {
+                if (shoppingIngredient == null) {
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity() - ingredient.getQuantity(), -1, ""));
+                } else {
+                    if (shoppingIngredient.getQuantity() + ingredient.getQuantity() < rc.getQuantity()) {
+                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - (shoppingIngredient.getQuantity() + ingredient.getQuantity()));
+                    }
+                }
+            }
+        }
+    }
+    public Ingredient searchIngredientList(String name) {
+        for (Ingredient ingredient: ingredientList) {
+            if (ingredient.getIngredientName().equals(name)) {
+                return ingredient;
+            }
+        }
+        return null;
+    }
+    public Ingredient searchShoppingList(String name) {
+        for (Ingredient ingredient: shoppingList) {
+            if(ingredient.getIngredientName().equals(name)) {
+                return ingredient;
+            }
+        }
+        return null;
+    }
     public ArrayList<Meal> getMealList() {
         return mealList;
     }

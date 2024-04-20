@@ -425,6 +425,17 @@ public class User {
         }
         return out;
     }
+    public void cookRecipe(RecipeBuilder recipeBuilder) {
+        int calories = 0;
+        for (RecipeComponent rc : recipeBuilder.recipeToArray()) {
+            Ingredient ingredient = searchIngredientList(rc.getName());
+            calories += ingredient.getCalories() * rc.getQuantity();
+            updateIngredient(ingredient, -rc.getQuantity());
+        }
+        Meal meal = new Meal(recipeBuilder.getName(), calories, (int) (0.34 * calories));
+        addMeal(meal);
+
+    }
 
     public void shopIngredients(ArrayList<RecipeComponent> recipeComponents) {
         for (RecipeComponent rc : recipeComponents) {
@@ -432,7 +443,7 @@ public class User {
             Ingredient shoppingIngredient = searchShoppingList(rc.getName());
             if (ingredient == null) {
                 if (shoppingIngredient == null) {
-                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity(), -1, ""));
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity(), 50, ""));
                 } else {
                     if (shoppingIngredient.getQuantity() < rc.getQuantity()) {
                         updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - shoppingIngredient.getQuantity());
@@ -440,7 +451,7 @@ public class User {
                 }
             } else if (ingredient.getQuantity() < rc.getQuantity()) {
                 if (shoppingIngredient == null) {
-                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity() - ingredient.getQuantity(), -1, ""));
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity() - ingredient.getQuantity(), 50, ""));
                 } else {
                     if (shoppingIngredient.getQuantity() + ingredient.getQuantity() < rc.getQuantity()) {
                         updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - (shoppingIngredient.getQuantity() + ingredient.getQuantity()));

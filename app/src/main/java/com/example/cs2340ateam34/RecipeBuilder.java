@@ -5,10 +5,14 @@ import java.util.ArrayList;
 public class RecipeBuilder {
 
     private String name;
-    RecipeComponent recipeTop;
+    private RecipeComponent recipeTop;
 
     public RecipeBuilder(String name) {
         this.name = name;
+    }
+
+    public RecipeBuilder(String name, recipeTop recipeTop) {
+
     }
 
     public void addComponent(String name, int quantity) {

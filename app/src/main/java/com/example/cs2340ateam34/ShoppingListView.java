@@ -27,6 +27,8 @@ public class ShoppingListView extends Fragment {
     private EditText ingredientname;
     private EditText quantity;
 
+    private EditText calories;
+
     private Button enterButton;
 
     private TextView error;
@@ -38,6 +40,7 @@ public class ShoppingListView extends Fragment {
         buyItems = view.findViewById(R.id.buybutton);
         ingredientname = view.findViewById(R.id.buyingredient_name);
         quantity = view.findViewById(R.id.buyquantity);
+        calories = view.findViewById(R.id.buycalories);
         enterButton = view.findViewById(R.id.buyenter_button);
         user = User.getInstance();
         shoppingrecyclerview = view.findViewById(R.id.shopping_list_recycler_view);
@@ -48,10 +51,12 @@ public class ShoppingListView extends Fragment {
                 error.setText("Input cannot be negative");
             } else if (checkExist(ingredientname.getText().toString())) {
                 error.setText("Cannot add duplicate ingredients");
-            } else {
+            } else if (Integer.parseInt(calories.getText().toString()) > 0) {
+                error.setText("Cannot have negative calorie amount");
+            }else {
                 Ingredient ingredient = new Ingredient(ingredientname.getText().toString(),
                         Integer.parseInt(quantity.getText().toString()),
-                        -1,
+                        Integer.parseInt(calories.getText().toString()),
                         "");
                 user.addIngredientShoppingList(ingredient);
                 error.setText("Ingredient added!");

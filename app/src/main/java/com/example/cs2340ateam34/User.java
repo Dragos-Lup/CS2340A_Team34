@@ -29,9 +29,8 @@ public class User {
 
     private static ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
+    private static ArrayList<RecipeBuilder> recipeList = new ArrayList<>();
     private static ArrayList<Ingredient> shoppingList = new ArrayList<>();
-
-    private static ArrayList<Recipe> recipeList = new ArrayList<>();
 
     private static int nextIngredientIndex;
 
@@ -237,13 +236,15 @@ public class User {
                             Log.d("madsf", key);
                             String name = key.toString();
                             Map recipeMap = (Map) (data.get(key));
-                            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
+//                            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
+                            RecipeBuilder recipe = new RecipeBuilder(name);
                             Set<String> innerKeySet = recipeMap.keySet();
                             for (String itemName : innerKeySet) {
                                 int quantity = Integer.parseInt(recipeMap.get(itemName).toString());
-                                recipeItems.add(new RecipeItem(itemName, quantity));
+//                                recipeItems.add(new RecipeItem(itemName, quantity));
+                                recipe.addComponent(itemName, quantity);
                             }
-                            Recipe recipe = new Recipe(name, recipeItems);
+//                            Recipe recipe = new Recipe(name, recipeItems);
                             recipeList.add(recipe);
                         }
                         /*for (Ingredient ingredient : tempingredientlist) {
@@ -323,6 +324,16 @@ public class User {
         }
     }
 
+
+    public void addRecipe(RecipeBuilder recipe) {
+//        ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
+        ArrayList<RecipeComponent> recipeItems = recipe.recipeToArray();
+        for (RecipeComponent item: recipeItems) {
+            dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(
+                    item.getQuantity());
+        }
+        recipeList.add(recipe);
+    }
     public void updateIngredientShoppingList(Ingredient ingredient, int value) {
         int index = ingredient.getIndex();
         if (ingredient.getQuantity() + value <= 0 || value == 0) {
@@ -348,18 +359,10 @@ public class User {
         ingredient.setBuying(false);
         addIngredient(ingredient);
 
-    }
-    public void addRecipe(Recipe recipe) {
-        ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
-        for (RecipeItem item: recipeItems) {
-            dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(
-                    item.getQuantity());
-        }
-        recipeList.add(recipe);
-    }
+    }            
 
-    public boolean checkRecipe(Recipe recipe) {
-        for (RecipeItem recipeItem : recipe.getRecipeItems()) {
+    public boolean checkRecipe(RecipeBuilder recipe) {
+        for (RecipeComponent recipeItem : recipe.recipeToArray()) {
             boolean itemValid = false;
             for (Ingredient  ingredient : ingredientList) {
                 if (ingredient.getIngredientName().equals(recipeItem.getName())) {
@@ -433,7 +436,7 @@ public class User {
         return nextIngredientIndex;
     }
 
-    public ArrayList<Recipe> getRecipeList() {
+    public ArrayList<RecipeBuilder> getRecipeList() {
         return recipeList;
     }
     public MainActivity getActivity() {

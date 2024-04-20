@@ -14,9 +14,9 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
     private Context context;
-    private List<Recipe> recipeList;
+    private List<RecipeBuilder> recipeList;
 
-    public RecipeAdapter(Context context, List<Recipe> recipeList) {
+    public RecipeAdapter(Context context, List<RecipeBuilder> recipeList) {
         this.context = context;
         this.recipeList = recipeList;
     }
@@ -31,13 +31,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (recipeList != null && !recipeList.isEmpty()) {
-            Recipe model = recipeList.get(position);
+            RecipeBuilder model = recipeList.get(position);
             holder.recipenametv.setText(model.getName());
             User user = User.getInstance();
             boolean canMake = user.checkRecipe(model);
             holder.recipemaketv.setText(canMake ? "Yes" : "No");
             String popupText = "" +  model.getName() + " details:\n ";
-            for (RecipeItem item : model.getRecipeItems()) {
+            for (RecipeComponent item : model.recipeToArray()) {
                 popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
             }
             holder.recipepopup.setText(popupText);

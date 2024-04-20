@@ -23,100 +23,71 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/grocery_store"
+
+    <EditText
+        android:id="@+id/buyingredient_name"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="108dp"
+        android:hint="Enter Ingredient Name: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <EditText
+        android:id="@+id/buyquantity"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="20dp"
+        android:hint="Enter Quantity: "
+        app:layout_constraintBottom_toTopOf="@+id/buybutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buyingredient_name"
+        app:layout_constraintVertical_bias="0.034"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/buyenter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:text="Shop from Grocery Store"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="70dp" />
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="389dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="13dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/shopping_list"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="162dp"
+        android:text="Enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grocery_store">
-
-        <TableLayout
-            android:id="@+id/tableLayout1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:isScrollContainer="true"
-            android:padding="10dip">
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1,2,3">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:gravity="left"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="1dp"
-                    android:text="Name"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:gravity="center"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="1dp"
-                    android:text="Quantity"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/add_to_cart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:gravity="center"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="1dp"
-                    android:text="Add to Cart"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/grocery_store_recycler_view"
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1,2,3" />
-
-        </TableLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
-
+        app:layout_constraintTop_toBottomOf="@+id/buyquantity"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/buyerror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="161dp"
+        android:layout_marginEnd="177dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="409dp"
         android:layout_height="262dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="16dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopping_list">
 
         <TableLayout
             android:id="@+id/tableLayout2"
@@ -125,76 +96,90 @@
             android:isScrollContainer="true"
             android:padding="10dip">
 
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1,2,3,4">
-
-            <TextView
-                android:id="@+id/food_name"
+            <TableRow
+                android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:gravity="left"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="1dp"
-                android:text="Name"
-                android:textStyle="bold" />
+                android:stretchColumns="1,2,3,4,5">
 
-            <TextView
-                android:id="@+id/quantity_in_cart"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/food_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="left"
+                    android:paddingHorizontal="25dp"
+                    android:paddingVertical="1dp"
+                    android:text="Name"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/quantity_in_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="right|center_horizontal"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="1dp"
+                    android:text="Quantity"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ADD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="right|center_horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="1dp"
+                    android:text="ADD"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/DEL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="1dp"
+                    android:text="DEL"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buy_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="1dp"
+                    android:text="Buy Item?"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopping_list_recycler_view"
+                android:layout_width="98dp"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:gravity="right|center_horizontal"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="1dp"
-                android:text="Quantity"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/remove_from_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:gravity="center"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="1dp"
-                android:text="Remove from Cart"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/buy_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:gravity="center"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="1dp"
-                android:text="Buy Item?"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shopping_list_recycler_view"
-            android:layout_width="98dp"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1,2,3,4" />
+                android:stretchColumns="1,2,3,4" />
 
         </TableLayout>
 
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="61dp"
         android:text="Buy Items"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView2" />
 
@@ -203,16 +188,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="317dp"
         android:layout_marginEnd="311dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-light"
         android:text="Shopping List"
         app:layout_constraintBottom_toTopOf="@+id/nestedScrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,9 +59,13 @@ public class ShoppingListView extends Fragment {
             setRecyclerView();
         });
         buyItems.setOnClickListener(v -> {
-            for (Ingredient shoppingIngredient : user.getShoppingList()) {
-                if (!shoppingIngredient.getBuying()) {continue;}
-                user.buyIngredient(shoppingIngredient);
+
+            for (int i = 0; i < user.getShoppingList().size();) {
+                if (user.getShoppingList().get(i).getBuying()) {
+                    user.buyIngredient(user.getShoppingList().get(i));
+                } else {
+                    i++;
+                }
             }
             user.getActivity().loadFragment(new ShoppingListView(), false, user);
         });

@@ -64,7 +64,6 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
         private TextView quantitytv;
         private Button addtv;
         private Button deltv;
-
         private CheckBox buytv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

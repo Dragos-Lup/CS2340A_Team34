@@ -1,5 +1,8 @@
 package com.example.cs2340ateam34;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,14 +41,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             boolean canMake = user.checkRecipe(model);
             holder.recipemaketv.setText(canMake ? "Yes" : "No");
             String popupText = "" +  model.getName() + " details:\n ";
+            holder.shopButton.setVisibility(canMake ? INVISIBLE : VISIBLE);
+            holder.shopButton.setOnClickListener(v -> {
+                user.shopIngredients(model.recipeToArray());
+            });
             for (RecipeComponent item : model.recipeToArray()) {
                 popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
             }
             holder.recipepopup.setText(popupText);
             holder.recipenametv.setOnClickListener(v -> {
                 if (canMake) {
+<<<<<<< HEAD
                     holder.recipepopup.setVisibility(View.VISIBLE);
                     holder.cookbutton.setVisibility(View.VISIBLE);
+=======
+                    holder.recipepopup.setVisibility(VISIBLE);
+>>>>>>> main
                 }
             });
         } else {
@@ -62,15 +73,23 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private TextView recipenametv;
         private TextView recipemaketv;
         private TextView recipepopup;
+<<<<<<< HEAD
 
         private Button cookbutton;
+=======
+        private Button shopButton;
+>>>>>>> main
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             recipenametv = itemView.findViewById(R.id.recipe_name_tv);
             recipemaketv = itemView.findViewById(R.id.recipe_make_tv);
             recipepopup = itemView.findViewById(R.id.recipe_popup);
+<<<<<<< HEAD
             cookbutton = itemView.findViewById(R.id.cookbutton_popup);
+=======
+            shopButton = itemView.findViewById(R.id.shopbutton);
+>>>>>>> main
 
         }
     }

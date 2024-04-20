@@ -427,7 +427,7 @@ public class User {
     }
 
     public ArrayList<Meal> getMealList() {
-        return mealList;
+        return mealList; 
     }
     public ArrayList<Ingredient> getIngredientList() {
         return ingredientList;

@@ -38,4 +38,11 @@
         android:text="Popup"
         android:textSize="24sp"
         android:visibility="gone" />
+
+    <Button
+        android:id="@+id/cookbutton_popup"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:text="Cook"
+        android:visibility="gone" />
 </TableLayout>

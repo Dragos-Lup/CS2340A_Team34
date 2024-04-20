@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             holder.recipenametv.setOnClickListener(v -> {
                 if (canMake) {
                     holder.recipepopup.setVisibility(View.VISIBLE);
+                    holder.cookbutton.setVisibility(View.VISIBLE);
                 }
             });
         } else {
@@ -60,12 +62,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private TextView recipenametv;
         private TextView recipemaketv;
         private TextView recipepopup;
+
+        private Button cookbutton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             recipenametv = itemView.findViewById(R.id.recipe_name_tv);
             recipemaketv = itemView.findViewById(R.id.recipe_make_tv);
             recipepopup = itemView.findViewById(R.id.recipe_popup);
+            cookbutton = itemView.findViewById(R.id.cookbutton_popup);
 
         }
     }

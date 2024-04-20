@@ -48,10 +48,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             for (RecipeComponent item : model.recipeToArray()) {
                 popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
             }
+            holder.cookbutton.setOnClickListener(v -> {
+                user.cookRecipe(model);
+            });
             holder.recipepopup.setText(popupText);
             holder.recipenametv.setOnClickListener(v -> {
                 if (canMake) {
                     holder.recipepopup.setVisibility(VISIBLE);
+                    holder.cookbutton.setVisibility(VISIBLE);
                 }
             });
         } else {
@@ -69,6 +73,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private TextView recipemaketv;
         private TextView recipepopup;
         private Button shopButton;
+        private Button cookbutton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -76,6 +81,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             recipemaketv = itemView.findViewById(R.id.recipe_make_tv);
             recipepopup = itemView.findViewById(R.id.recipe_popup);
             shopButton = itemView.findViewById(R.id.shopbutton);
+            cookbutton = itemView.findViewById(R.id.cookbutton_popup);
 
         }
     }

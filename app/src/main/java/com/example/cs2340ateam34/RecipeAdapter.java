@@ -51,12 +51,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             holder.recipepopup.setText(popupText);
             holder.recipenametv.setOnClickListener(v -> {
                 if (canMake) {
-<<<<<<< HEAD
                     holder.recipepopup.setVisibility(View.VISIBLE);
                     holder.cookbutton.setVisibility(View.VISIBLE);
-=======
                     holder.recipepopup.setVisibility(VISIBLE);
->>>>>>> main
                 }
             });
         } else {
@@ -73,23 +70,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private TextView recipenametv;
         private TextView recipemaketv;
         private TextView recipepopup;
-<<<<<<< HEAD
-
         private Button cookbutton;
-=======
         private Button shopButton;
->>>>>>> main
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             recipenametv = itemView.findViewById(R.id.recipe_name_tv);
             recipemaketv = itemView.findViewById(R.id.recipe_make_tv);
             recipepopup = itemView.findViewById(R.id.recipe_popup);
-<<<<<<< HEAD
             cookbutton = itemView.findViewById(R.id.cookbutton_popup);
-=======
             shopButton = itemView.findViewById(R.id.shopbutton);
->>>>>>> main
 
         }
     }

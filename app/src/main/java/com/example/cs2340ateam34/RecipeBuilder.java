@@ -11,8 +11,9 @@ public class RecipeBuilder {
         this.name = name;
     }
 
-    public RecipeBuilder(String name, recipeTop recipeTop) {
-
+    public RecipeBuilder(RecipeBuilder recipe) {
+        this.name = recipe.name;
+        this.recipeTop = recipe.recipeTop;
     }
 
     public void addComponent(String name, int quantity) {
@@ -31,5 +32,10 @@ public class RecipeBuilder {
 
     public String getName() {
         return name;
+    }
+
+    public RecipeBuilder setMakeability() {
+        return User.getInstance().checkRecipe(this)
+                ? new MakeableRecipe(this) : new NotMakeableRecipe(this);
     }
 }

@@ -1,8 +1,7 @@
 package com.example.cs2340ateam34;
 
-public class MakeableRecipe {
-    RecipeBuilder recipe;
+public class MakeableRecipe extends RecipeBuilder {
     public MakeableRecipe(RecipeBuilder recipe) {
-        this.recipe = recipe;
+        super(recipe);
     }
 }

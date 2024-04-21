@@ -36,28 +36,30 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (recipeList != null && !recipeList.isEmpty()) {
             RecipeBuilder model = recipeList.get(position).setMakeability();
-            holder.recipenametv.setText(model.getName());
-            User user = User.getInstance();
-            boolean canMake = user.checkRecipe(model);
-            holder.recipemaketv.setText(canMake ? "Yes" : "No");
-            String popupText = "" +  model.getName() + " details:\n ";
-            holder.shopButton.setVisibility(canMake ? INVISIBLE : VISIBLE);
-            holder.shopButton.setOnClickListener(v -> {
-                user.shopIngredients(model.recipeToArray());
-            });
-            for (RecipeComponent item : model.recipeToArray()) {
-                popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
-            }
-            holder.cookbutton.setOnClickListener(v -> {
-                user.cookRecipe(model);
-            });
-            holder.recipepopup.setText(popupText);
-            holder.recipenametv.setOnClickListener(v -> {
-                if (canMake) {
-                    holder.recipepopup.setVisibility(VISIBLE);
-                    holder.cookbutton.setVisibility(VISIBLE);
-                }
-            });
+            RecipeVisitor displayer = new RecipeRowVisitor(holder);
+            displayer.display(model);
+//            holder.recipenametv.setText(model.getName());
+//            User user = User.getInstance();
+//            boolean canMake = user.checkRecipe(model);
+//            holder.recipemaketv.setText(canMake ? "Yes" : "No");
+//            String popupText = "" +  model.getName() + " details:\n ";
+//            holder.shopButton.setVisibility(canMake ? INVISIBLE : VISIBLE);
+//            holder.shopButton.setOnClickListener(v -> {
+//                user.shopIngredients(model.recipeToArray());
+//            });
+//            for (RecipeComponent item : model.recipeToArray()) {
+//                popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
+//            }
+//            holder.cookbutton.setOnClickListener(v -> {
+//                user.cookRecipe(model);
+//            });
+//            holder.recipepopup.setText(popupText);
+//            holder.recipenametv.setOnClickListener(v -> {
+//                if (canMake) {
+//                    holder.recipepopup.setVisibility(VISIBLE);
+//                    holder.cookbutton.setVisibility(VISIBLE);
+//                }
+//            });
         } else {
             return;
         }

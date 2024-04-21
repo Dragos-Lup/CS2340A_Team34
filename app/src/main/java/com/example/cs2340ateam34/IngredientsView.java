@@ -56,7 +56,14 @@ public class IngredientsView extends Fragment {
 
 
         enterButton.setOnClickListener(v -> {
-            if (Integer.parseInt(ingredientQuantity.getText().toString()) <= 0) {
+            ArrayList<EditText> texts = new ArrayList<>();
+            texts.add(ingredientName);
+            texts.add(ingredientQuantity);
+            texts.add(ingredientCalories);
+            texts.add(ingredientExpiry);
+            if (TextChecker.checkEmpty(texts)) {
+                errorDisplay.setText("Inputs cannot be empty");
+            } else if (Integer.parseInt(ingredientQuantity.getText().toString()) <= 0) {
                 errorDisplay.setText("Input cannot be negative");
             } else if (checkExist(ingredientName.getText().toString())) {
                 errorDisplay.setText("Cannot add duplicate ingredients");

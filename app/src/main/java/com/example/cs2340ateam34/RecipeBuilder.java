@@ -5,10 +5,15 @@ import java.util.ArrayList;
 public class RecipeBuilder {
 
     private String name;
-    RecipeComponent recipeTop;
+    private RecipeComponent recipeTop;
 
     public RecipeBuilder(String name) {
         this.name = name;
+    }
+
+    public RecipeBuilder(RecipeBuilder recipe) {
+        this.name = recipe.name;
+        this.recipeTop = recipe.recipeTop;
     }
 
     public void addComponent(String name, int quantity) {
@@ -27,5 +32,10 @@ public class RecipeBuilder {
 
     public String getName() {
         return name;
+    }
+
+    public RecipeBuilder setMakeability() {
+        return User.getInstance().checkRecipe(this)
+                ? new MakeableRecipe(this) : new NotMakeableRecipe(this);
     }
 }

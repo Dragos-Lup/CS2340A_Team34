@@ -44,8 +44,8 @@ public class RecipeRowVisitor implements RecipeVisitor{
             user.shopIngredients(recipe.recipeToArray());
         });
         recipenametv.setOnClickListener(v -> {
-            recipepopup.setVisibility(View.VISIBLE);
-            cookbutton.setVisibility(View.VISIBLE);
+                recipepopup.setVisibility(View.VISIBLE);
+                cookbutton.setVisibility(View.VISIBLE);
         });
         String popupText = "" +  recipe.getName() + " details:\n ";
         for (RecipeComponent item : recipe.recipeToArray()) {

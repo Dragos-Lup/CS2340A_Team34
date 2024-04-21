@@ -47,13 +47,19 @@ public class ShoppingListView extends Fragment {
         error = view.findViewById(R.id.buyerror);
         setRecyclerView();
         enterButton.setOnClickListener(v -> {
-            if (Integer.parseInt(quantity.getText().toString()) <= 0) {
+            ArrayList<EditText> texts = new ArrayList<>();
+            texts.add(quantity);
+            texts.add(ingredientname);
+            texts.add(calories);
+            if (TextChecker.checkEmpty(texts)) {
+                error.setText("Inputs cannot be empty");
+            } else if (Integer.parseInt(quantity.getText().toString()) <= 0) {
                 error.setText("Input cannot be negative");
             } else if (checkExist(ingredientname.getText().toString())) {
                 error.setText("Cannot add duplicate ingredients");
-            } else if (Integer.parseInt(calories.getText().toString()) > 0) {
+            } else if (Integer.parseInt(calories.getText().toString()) < 0) {
                 error.setText("Cannot have negative calorie amount");
-            }else {
+            } else {
                 Ingredient ingredient = new Ingredient(ingredientname.getText().toString(),
                         Integer.parseInt(quantity.getText().toString()),
                         Integer.parseInt(calories.getText().toString()),

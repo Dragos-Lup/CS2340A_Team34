@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
+
 public class InputMealView extends Fragment {
     private EditText mealName;
 
@@ -23,6 +25,7 @@ public class InputMealView extends Fragment {
     private EditText price;
 
     private TextView title;
+    private TextView mealerror;
     private Button submitButton;
     private DatabaseReference meals;
     @Override
@@ -35,6 +38,7 @@ public class InputMealView extends Fragment {
         price = view.findViewById(R.id.pricetext);
 
         title = view.findViewById(R.id.textView3);
+        mealerror = view.findViewById(R.id.mealerror);
 
         User user = User.getInstance();
         TextView heightDisplay = view.findViewById(R.id.user_height);
@@ -59,16 +63,24 @@ public class InputMealView extends Fragment {
         Button calorieVisual = view.findViewById(R.id.cal_visual);
 
         submitButton.setOnClickListener(v -> {
-            Log.d("currcal", "in");
-            Meal inputMeal = new Meal(mealName.getText().toString(),
-                    Integer.parseInt(calories.getText().toString()),
-                    Integer.parseInt(price.getText().toString()));
-            user.addMeal(inputMeal);
-            Log.d("currcal", "addedmeal");
-            double newCalories = user.getCurrDayCalorieIntake();
-            Log.d("currcal", "" + newCalories);
-            currentCaloriesDisplay.setText("Current Day Calorie Intake: " + newCalories);
+            ArrayList<EditText> texts = new ArrayList<>();
+            texts.add(mealName);
+            texts.add(calories);
+            texts.add(price);
+            if (TextChecker.checkEmpty(texts)) {
+                mealerror.setText("Inputs cannot be empty");
+            } else {
 
+                Log.d("currcal", "in");
+                Meal inputMeal = new Meal(mealName.getText().toString(),
+                        Integer.parseInt(calories.getText().toString()),
+                        Integer.parseInt(price.getText().toString()));
+                user.addMeal(inputMeal);
+                Log.d("currcal", "addedmeal");
+                double newCalories = user.getCurrDayCalorieIntake();
+                Log.d("currcal", "" + newCalories);
+                currentCaloriesDisplay.setText("Current Day Calorie Intake: " + newCalories);
+            }
         });
 
         priceVisual.setOnClickListener(v -> {

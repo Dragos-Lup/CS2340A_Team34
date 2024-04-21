@@ -48,33 +48,40 @@ public class RecipeView extends Fragment {
         filterAll.toggle();
         setRecyclerView();
         enter.setOnClickListener(v -> {
-            String name = recipeName.getText().toString();
-            RecipeBuilder recipe = new RecipeBuilder(name);
+            ArrayList<EditText> texts = new ArrayList<>();
+            texts.add(recipeName);
+            texts.add(items);
+            if (TextChecker.checkEmpty(texts)) {
+                recipeError.setText("Inputs cannot be empty");
+            } else {
+                String name = recipeName.getText().toString();
+                RecipeBuilder recipe = new RecipeBuilder(name);
 //            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
-            String itemsraw = items.getText().toString();
-            String[] itemssep = itemsraw.split(",");
-            boolean quantityError = false;
-            for (String itemraw : itemssep) {
-                String[] item = itemraw.split("-");
-                String itemname = item[0].trim();
-                int itemquantity = Integer.parseInt(item[1].trim());
-                if (itemquantity < 1) {
-                    quantityError = true;
-                    break;
-                }
+                String itemsraw = items.getText().toString();
+                String[] itemssep = itemsraw.split(",");
+                boolean quantityError = false;
+                for (String itemraw : itemssep) {
+                    String[] item = itemraw.split("-");
+                    String itemname = item[0].trim();
+                    int itemquantity = Integer.parseInt(item[1].trim());
+                    if (itemquantity < 1) {
+                        quantityError = true;
+                        break;
+                    }
 //                RecipeItem recipeItem = new RecipeItem(itemname, itemquantity);
 //                recipeItems.add(recipeItem);
-                recipe.addComponent(itemname, itemquantity);
-            }
-            if (quantityError) {
-                recipeError.setText("Input quantity cannot be less than 1.");
-            } else {
+                    recipe.addComponent(itemname, itemquantity);
+                }
+                if (quantityError) {
+                    recipeError.setText("Input quantity cannot be less than 1.");
+                } else {
 //                Recipe recipe = new Recipe(name, recipeItems);
-                user.addRecipe(recipe);
-                setRecyclerView();
-                recipeError.setText("Recipe Added!");
-                recipeName.setText("");
-                items.setText("");
+                    user.addRecipe(recipe);
+                    setRecyclerView();
+                    recipeError.setText("Recipe Added!");
+                    recipeName.setText("");
+                    items.setText("");
+                }
             }
         });
 

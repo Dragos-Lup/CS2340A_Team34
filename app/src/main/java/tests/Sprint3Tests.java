@@ -76,7 +76,6 @@ public class Sprint3Tests {
 
     }
 
-    /** @noinspection checkstyle:WhitespaceAfter*/
     @Test
     public void userTestingIngredient2() {
         User a = User.getInstance("a");
@@ -109,7 +108,6 @@ public class Sprint3Tests {
         a.addIngredient(i);
         a.addIngredient(i);
         a.addIngredient(j);
-        // SHOULDN'T BE [i,i,j]
         ArrayList<Ingredient> l = a.getIngredientList();
         assertEquals(l.get(0).getIngredientName(), "Egg");
         assertEquals(l.get(1).getIngredientName(), "Cheese");

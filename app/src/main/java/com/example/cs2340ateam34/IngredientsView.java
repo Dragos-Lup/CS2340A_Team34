@@ -60,7 +60,6 @@ public class IngredientsView extends Fragment {
             texts.add(ingredientName);
             texts.add(ingredientQuantity);
             texts.add(ingredientCalories);
-            texts.add(ingredientExpiry);
             if (TextChecker.checkEmpty(texts)) {
                 errorDisplay.setText("Inputs cannot be empty");
             } else if (Integer.parseInt(ingredientQuantity.getText().toString()) <= 0) {

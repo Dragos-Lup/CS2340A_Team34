@@ -49,7 +49,7 @@ public class Ingredient {
     public void setBuying(boolean b) {
         this.buying = b;
     }
-    public boolean getBuying(){
+    public boolean getBuying() {
         return this.buying;
     }
 }

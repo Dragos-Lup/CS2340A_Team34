@@ -74,10 +74,12 @@ public class CreateAccountView extends AppCompatActivity {
 
     }
     private void setPantry(DatabaseReference mDatabase, String uname) {
-        mDatabase.child("pantry").child(uname).child("metadata").child("nextindex").setValue(0);
+        mDatabase.child("pantry").child(uname).child("metadata")
+                .child("nextindex").setValue(0);
     }
     private void setShoppingList(DatabaseReference mDatabase, String uname) {
-        mDatabase.child("shoppinglist").child(uname).child("metadata").child("nextindex").setValue(0);
+        mDatabase.child("shoppinglist").child(uname).child("metadata")
+                .child("nextindex").setValue(0);
     }
     protected void logincode() {
         Intent toMainActivity = new Intent(CreateAccountView.this, MainActivity.class);

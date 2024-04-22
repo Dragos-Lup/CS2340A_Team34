@@ -1,20 +1,18 @@
 package com.example.cs2340ateam34;
 
-import static android.view.View.VISIBLE;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class RecipeRowVisitor implements RecipeVisitor{
+public class RecipeRowVisitor implements RecipeVisitor {
 
-    RecipeAdapter.ViewHolder holder;
+    private RecipeAdapter.ViewHolder holder;
     private TextView recipenametv;
     private TextView recipemaketv;
     private TextView recipepopup;
     private Button cookbutton;
     private Button shopButton;
-    User user;
+    private User user;
 
     public RecipeRowVisitor(RecipeAdapter.ViewHolder holder) {
         this.holder = holder;
@@ -44,8 +42,8 @@ public class RecipeRowVisitor implements RecipeVisitor{
             user.shopIngredients(recipe.recipeToArray());
         });
         recipenametv.setOnClickListener(v -> {
-                recipepopup.setVisibility(View.VISIBLE);
-                cookbutton.setVisibility(View.VISIBLE);
+            recipepopup.setVisibility(View.VISIBLE);
+            cookbutton.setVisibility(View.VISIBLE);
         });
         String popupText = "" +  recipe.getName() + " details:\n ";
         for (RecipeComponent item : recipe.recipeToArray()) {

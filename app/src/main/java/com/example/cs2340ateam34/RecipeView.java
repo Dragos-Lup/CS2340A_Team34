@@ -56,7 +56,7 @@ public class RecipeView extends Fragment {
             } else {
                 String name = recipeName.getText().toString();
                 RecipeBuilder recipe = new RecipeBuilder(name);
-//            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
+                //ArrayList<RecipeItem> recipeItems = new ArrayList<>();
                 String itemsraw = items.getText().toString();
                 String[] itemssep = itemsraw.split(",");
                 boolean quantityError = false;
@@ -68,14 +68,11 @@ public class RecipeView extends Fragment {
                         quantityError = true;
                         break;
                     }
-//                RecipeItem recipeItem = new RecipeItem(itemname, itemquantity);
-//                recipeItems.add(recipeItem);
                     recipe.addComponent(itemname, itemquantity);
                 }
                 if (quantityError) {
                     recipeError.setText("Input quantity cannot be less than 1.");
                 } else {
-//                Recipe recipe = new Recipe(name, recipeItems);
                     user.addRecipe(recipe);
                     setRecyclerView();
                     recipeError.setText("Recipe Added!");

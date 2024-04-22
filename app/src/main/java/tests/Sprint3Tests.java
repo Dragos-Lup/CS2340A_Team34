@@ -1,7 +1,6 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -115,36 +114,5 @@ public class Sprint3Tests {
         assertEquals(l.get(0).getIngredientName(), "Egg");
         assertEquals(l.get(1).getIngredientName(), "Cheese");
     }
-
-//    @Test
-//    public void userRecipeTesting1() {
-//        User a = User.getInstance("a");
-//
-//        RecipeItem ri = new RecipeItem("egg", 3);
-//        ArrayList<RecipeItem> riList = new ArrayList<RecipeItem>();
-//        riList.add(ri);
-//        Recipe r = new Recipe("scramble", riList);
-//
-//        Ingredient i = new Ingredient("egg", 3, 5, "Never");
-//
-//
-//        a.addIngredient(i);
-//        assertTrue(a.checkRecipe(r));
-//
-//    }
-//
-//    @Test
-//    public void userRecipeTesting2() {
-//        User a = User.getInstance("a");
-//
-//        RecipeItem ri = new RecipeItem("egg", 3);
-//        ArrayList<RecipeItem> riList = new ArrayList<RecipeItem>();
-//        riList.add(ri);
-//        Recipe r = new Recipe("scramble", riList);
-//
-//
-//        assertFalse(a.checkRecipe(r));
-//
-//    }
 
 }

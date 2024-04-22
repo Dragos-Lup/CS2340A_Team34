@@ -236,20 +236,14 @@ public class User {
                             Log.d("madsf", key);
                             String name = key.toString();
                             Map recipeMap = (Map) (data.get(key));
-//                            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
                             RecipeBuilder recipe = new RecipeBuilder(name);
                             Set<String> innerKeySet = recipeMap.keySet();
                             for (String itemName : innerKeySet) {
                                 int quantity = Integer.parseInt(recipeMap.get(itemName).toString());
-//                                recipeItems.add(new RecipeItem(itemName, quantity));
                                 recipe.addComponent(itemName, quantity);
                             }
-//                            Recipe recipe = new Recipe(name, recipeItems);
                             recipeList.add(recipe);
                         }
-                        /*for (Ingredient ingredient : tempingredientlist) {
-                            ingredientList.add(ingredient);
-                        }*/
                     }
                 });
     }
@@ -291,6 +285,11 @@ public class User {
         dbRef.child("shoppinglist").child(uname).child("metadata").child(
                 "nextindex").setValue(nextShoppingListIndex);
     }
+    public void addIngredientShoppingList(Ingredient ingredient, Boolean t) {
+        ingredient.setIndex(nextShoppingListIndex);
+        shoppingList.add(ingredient);
+        nextShoppingListIndex++;
+    }
     public void addIngredient(Ingredient ingredient) {
         ingredient.setIndex(nextIngredientIndex);
         Log.d("ingredientcration", "" + ingredient.getIndex() + ingredient.getIngredientName());
@@ -309,6 +308,12 @@ public class User {
                 "nextindex").setValue(nextIngredientIndex);
     }
 
+    public void addIngredient(Ingredient ingredient, Boolean t) {
+        ingredient.setIndex(nextIngredientIndex);
+        ingredientList.add(ingredient);
+        nextIngredientIndex++;
+    }
+
     public void updateIngredient(Ingredient ingredient, int value) {
         Log.d("BRUHHUUHUHUHUH", "" + ingredient.getIndex() + ingredient.getIngredientName());
         int index = ingredient.getIndex();
@@ -323,10 +328,17 @@ public class User {
             ingredient.setQuantity(ingredient.getQuantity() + value);
         }
     }
+    public void updateIngredient(Ingredient ingredient, int value, Boolean t) {
+        int index = ingredient.getIndex();
+        if (ingredient.getQuantity() + value <= 0) {
+            ingredientList.remove(ingredient);
+        } else {
+            ingredient.setQuantity(ingredient.getQuantity() + value);
+        }
+    }
 
 
     public void addRecipe(RecipeBuilder recipe) {
-//        ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
         ArrayList<RecipeComponent> recipeItems = recipe.recipeToArray();
         for (RecipeComponent item: recipeItems) {
             dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(
@@ -436,6 +448,17 @@ public class User {
         addMeal(meal);
 
     }
+    public void cookRecipe(RecipeBuilder recipeBuilder, Boolean t) {
+        int calories = 0;
+        for (RecipeComponent rc : recipeBuilder.recipeToArray()) {
+            Ingredient ingredient = searchIngredientList(rc.getName());
+            calories += ingredient.getCalories() * rc.getQuantity();
+            updateIngredient(ingredient, -rc.getQuantity(), true);
+        }
+        //Meal meal = new Meal(recipeBuilder.getName(), calories, (int) (0.34 * calories));
+        //addMeal(meal);
+
+    }
 
     public void shopIngredients(ArrayList<RecipeComponent> recipeComponents) {
         for (RecipeComponent rc : recipeComponents) {
@@ -443,18 +466,23 @@ public class User {
             Ingredient shoppingIngredient = searchShoppingList(rc.getName());
             if (ingredient == null) {
                 if (shoppingIngredient == null) {
-                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity(), 50, ""));
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity(),
+                            50, ""));
                 } else {
                     if (shoppingIngredient.getQuantity() < rc.getQuantity()) {
-                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - shoppingIngredient.getQuantity());
+                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity()
+                                - shoppingIngredient.getQuantity());
                     }
                 }
             } else if (ingredient.getQuantity() < rc.getQuantity()) {
                 if (shoppingIngredient == null) {
-                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity() - ingredient.getQuantity(), 50, ""));
+                    addIngredientShoppingList(new Ingredient(rc.getName(), rc.getQuantity()
+                            - ingredient.getQuantity(), 50, ""));
                 } else {
-                    if (shoppingIngredient.getQuantity() + ingredient.getQuantity() < rc.getQuantity()) {
-                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity() - (shoppingIngredient.getQuantity() + ingredient.getQuantity()));
+                    if (shoppingIngredient.getQuantity()
+                            + ingredient.getQuantity() < rc.getQuantity()) {
+                        updateIngredientShoppingList(shoppingIngredient, rc.getQuantity()
+                                - (shoppingIngredient.getQuantity() + ingredient.getQuantity()));
                     }
                 }
             }
@@ -470,7 +498,7 @@ public class User {
     }
     public Ingredient searchShoppingList(String name) {
         for (Ingredient ingredient: shoppingList) {
-            if(ingredient.getIngredientName().equals(name)) {
+            if (ingredient.getIngredientName().equals(name)) {
                 return ingredient;
             }
         }

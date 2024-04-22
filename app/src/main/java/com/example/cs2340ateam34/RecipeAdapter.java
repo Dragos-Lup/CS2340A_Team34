@@ -1,8 +1,5 @@
 package com.example.cs2340ateam34;
 
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,28 +35,27 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             RecipeBuilder model = recipeList.get(position).setMakeability();
             RecipeVisitor displayer = new RecipeRowVisitor(holder);
             displayer.display(model);
-//            holder.recipenametv.setText(model.getName());
-//            User user = User.getInstance();
-//            boolean canMake = user.checkRecipe(model);
-//            holder.recipemaketv.setText(canMake ? "Yes" : "No");
-//            String popupText = "" +  model.getName() + " details:\n ";
-//            holder.shopButton.setVisibility(canMake ? INVISIBLE : VISIBLE);
-//            holder.shopButton.setOnClickListener(v -> {
-//                user.shopIngredients(model.recipeToArray());
-//            });
-//            for (RecipeComponent item : model.recipeToArray()) {
-//                popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
-//            }
-//            holder.cookbutton.setOnClickListener(v -> {
-//                user.cookRecipe(model);
-//            });
-//            holder.recipepopup.setText(popupText);
-//            holder.recipenametv.setOnClickListener(v -> {
-//                if (canMake) {
-//                    holder.recipepopup.setVisibility(VISIBLE);
-//                    holder.cookbutton.setVisibility(VISIBLE);
-//                }
-//            });
+        //            holder.recipenametv.setText(model.getName());
+        //            User user = User.getInstance();
+        //            boolean canMake = user.checkRecipe(model);
+        //            holder.recipemaketv.setText(canMake ? "Yes" : "No");
+        //            String popupText = "" +  model.getName() + " details:\n ";
+        //            holder.shopButton.setVisibility(canMake ? INVISIBLE : VISIBLE);
+        //            holder.shopButton.setOnClickListener(v -> {
+        //                user.shopIngredients(model.recipeToArray());
+        //            });
+        //            for (RecipeComponent item : model.recipeToArray()) {
+        //                popupText += "" + item.getName() + " - " + item.getQuantity() + "\n";
+        //            }
+        //            holder.cookbutton.setOnClickListener(v -> {
+        //                user.cookRecipe(model);
+        //            });
+        //            holder.recipepopup.setText(popupText);
+        //            holder.recipenametv.setOnClickListener(v -> {
+        //                if (canMake) {
+        //                    holder.recipepopup.setVisibility(VISIBLE);
+        //                    holder.cookbutton.setVisibility(VISIBLE);
+        //                }
         } else {
             return;
         }

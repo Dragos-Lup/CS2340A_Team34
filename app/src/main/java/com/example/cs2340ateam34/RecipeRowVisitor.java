@@ -72,8 +72,7 @@ public class RecipeRowVisitor implements RecipeVisitor {
         });
         recipepopup.setText(popupText);
         recipenametv.setOnClickListener(v -> {
-            recipepopup.setVisibility(View.INVISIBLE);
-            cookbutton.setVisibility(View.INVISIBLE);
+            //Nothing
         });
     }
 }

@@ -15,10 +15,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Tests
- *
- */
 public class Sprint3Tests {
     @Test
     public void userTesting() {
